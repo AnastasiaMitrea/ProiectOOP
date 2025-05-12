@@ -2,20 +2,23 @@
 #define DATE_H
 
 #include <iostream>
-using namespace std;
 
-struct Date{
-    int zi;
-    int luna;
-    int an;
+namespace Transport_Aerian {
 
-    Date(int zi, int luna, int an) : zi(zi), luna(luna), an(an) {}
+    struct Date{
+        int zi;
+        int luna;
+        int an;
 
-    //afisare data in formatul DD/MM/YYYY
-    friend ostream& operator<<(std::ostream& os, const Date& date) {
-        os << date.zi << "/" << date.luna << "/" << date.an;
-        return os;
-    }
-};
+        Date(int zi, int luna, int an) : zi(zi), luna(luna), an(an) {}
+
+        //afisare data in formatul DD/MM/YYYY
+        friend std::ostream& operator<<(std::ostream& os, const Date& date) {
+            os << date.zi << "/" << date.luna << "/" << date.an;
+            return os;
+        }
+    };
+
+}
 
 #endif
