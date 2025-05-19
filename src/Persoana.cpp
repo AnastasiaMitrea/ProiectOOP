@@ -10,7 +10,7 @@ Persoana::Persoana() : m_nume(""), m_prenume(""), m_cnp(""), m_varsta(0) {}
 Persoana::Persoana(const string& nume, const string& prenume,
                    const string& cnp, int varsta)
     : m_nume(nume), m_prenume(prenume), m_cnp(cnp), m_varsta(varsta) {
-    if (!ValidareCNP(m_cnp)) {
+    if (!_ValidareCNP(m_cnp)) {
         throw invalid_argument("CNP invalid!");
     }
 }
@@ -33,7 +33,7 @@ int Persoana::GetVarsta() const { return m_varsta; }
 void Persoana::SetNume(const string& nume) { m_nume = nume; }
 void Persoana::SetPrenume(const string& prenume) { m_prenume = prenume; }
 void Persoana::SetCNP(const string& cnp) {
-    if (!ValidareCNP(cnp)) {
+    if (!_ValidareCNP(cnp)) {
         throw invalid_argument("CNP invalid!");
     }
     m_cnp = cnp;
@@ -41,7 +41,7 @@ void Persoana::SetCNP(const string& cnp) {
 void Persoana::SetVarsta(int varsta) { m_varsta = varsta; }
 
 //metoda validare CNP
-bool Persoana::ValidareCNP(const string& cnp) const {
+bool Persoana::_ValidareCNP(const string& cnp) const {
     return cnp.length() == 13;
 }
 

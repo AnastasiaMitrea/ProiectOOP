@@ -19,7 +19,7 @@ namespace Transport_Aerian {
         Pasager(const Pasager& other);
         ~Pasager();
 
-        void AfisareData() const override;  //suprascriu metoda virtuala pura din clasa de baza
+        void AfisareDate() const override;  //suprascriu metoda virtuala pura din clasa de baza
         void AdaugaZbor(Zbor* zbor); //adaug un pointer la Zbor in lista de zboruri ale pasagerului
         static int GetNumarPasageri(); //functia statica care returneaza cati pasageri au fost creati
         const Bilet& GetBilet() const;
@@ -30,7 +30,7 @@ namespace Transport_Aerian {
         friend std::ostream& operator<<(std::ostream& out, const Pasager& pasager);
 
     private:
-        Bilet m_Bilet; //obiect de tip bilet asociat pasagerului
+        Bilet m_bilet; //obiect de tip bilet asociat pasagerului
         std::vector<Zbor*> m_zboruri;  //lsita de zboruri ale unui pasager - obiecte pe heap, gestionate dinamic
         static int m_numar_pasageri; // membru static care retine numarul total de pasageri creati
         void _IncrementareContor(); //metoda privata pt a creste numarul de pasageri

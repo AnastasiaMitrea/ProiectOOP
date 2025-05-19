@@ -37,7 +37,7 @@ namespace Transport_Aerian {
         std::string m_prenume;
         std::string m_cnp;
         int m_varsta;
-        bool ValidareCNP(const std::string& cnp) const;        
+        bool _ValidareCNP(const std::string& cnp) const;        
     };
 
 }
