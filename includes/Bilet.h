@@ -1,6 +1,9 @@
 #ifndef BILET_H
 #define BILET_H
 
+#include <string>
+#include <iostream>
+
 namespace Transport_Aerian {
 
     class Bilet {

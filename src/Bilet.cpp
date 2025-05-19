@@ -39,7 +39,7 @@ void Bilet::SetPret(int pret){
 // afisare cu operator << supraincarcat
 namespace Transport_Aerian {
     ostream& operator<<(ostream& out, const Bilet& bilet) {
-    out << "[Bilet ID: " << bilet.m_id
+    out << "[ID: " << bilet.m_id
         << ", Clasa: " << bilet.m_clasa
         << ", Pret: " << bilet.m_pret << " lei]";
     return out;

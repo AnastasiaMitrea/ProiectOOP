@@ -72,10 +72,12 @@ Pasager Pasager::operator+(Zbor* zbor) const {
     return nou; 
 }
 
-//supraincare operator << pt a afisa pasagerul
-ostream& operator<<(ostream& out, const Pasager& pasager) {
-    pasager.AfisareDate(); //apelez metoda de afisare a datelor
-    return out;
+namespace Transport_Aerian{
+    //supraincare operator << pt a afisa pasagerul
+    ostream& operator<<(ostream& out, const Pasager& pasager) {
+        pasager.AfisareDate(); //apelez metoda de afisare a datelor
+        return out;
+    }
 }
 
 //metoda privata care creste contorul de pasageri

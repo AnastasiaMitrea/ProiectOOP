@@ -9,8 +9,8 @@ namespace Transport_Aerian {
         int ora;
         int minut;
 
-        Ora(int ora, int minut, int secunda) : ora(ora), minut(minut) {}
-        //afisare ora in formatul HH:MM:SS
+        Ora(int ora, int minut) : ora(ora), minut(minut) {}
+        //afisare ora in formatul HH:MM
         friend std::ostream& operator<<(std::ostream& os, const Ora& ora) {
             os << ora.ora << ":" << ora.minut;
             return os;
