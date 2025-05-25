@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-namespace Transport_Aerian {
+namespace Utilitati {
 
     struct Ora {
         int ora;

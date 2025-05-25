@@ -3,14 +3,15 @@
 
 #include <iostream>
 
-namespace Transport_Aerian {
+namespace Utilitati {
 
     struct Date{
         int zi;
         int luna;
         int an;
 
-        Date(int zi, int luna, int an) : zi(zi), luna(luna), an(an) {}
+        Date() : zi(0), luna(0), an(0) {} //constructor default
+        Date(int zi, int luna, int an) : zi(zi), luna(luna), an(an) {}  //constructor cu lista de initializare
 
         //afisare data in formatul DD/MM/YYYY
         friend std::ostream& operator<<(std::ostream& os, const Date& date) {
