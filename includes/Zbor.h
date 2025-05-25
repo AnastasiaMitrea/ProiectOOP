@@ -42,10 +42,13 @@ namespace Transport_Aerian {
         std::string m_id;
         std::string m_plecare;
         std::string m_destinatie;
+
         Date m_data_plecare;
         Ora m_ora_plecare;
+
         Date m_data_sosire;
         Ora m_ora_sosire;
+        
         int m_durata;
         int m_pret;
     };

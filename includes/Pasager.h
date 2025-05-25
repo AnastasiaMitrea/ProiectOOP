@@ -15,14 +15,14 @@ namespace Transport_Aerian {
 
     public:
         Pasager(); 
-        Pasager(const std::string& nume, const std::string& prenuume, const std::string& cnp, int varsta, const Bilet& bilet);   
+        Pasager(const std::string& nume, const std::string& prenume, const std::string& cnp, int varsta, const Bilet& bilet);   
         Pasager(const Pasager& other);
         ~Pasager();
 
         void AdaugaZborIstoric(Zbor* zbor); //adaug un pointer la Zbor in lista de zboruri ale pasagerului
         static int GetNumarPasageri(); //functia statica care returneaza cati pasageri au fost creati
         const Bilet& GetBilet() const;
-        const std::vector<Zbor*>& GetZboruri() const; //getter pt lista de zboruri
+        const std::vector<Zbor*>& GetIstoricZboruri() const; //getter pt lista de zboruri
 
         Pasager operator+(Zbor* zbor) const; //supraincarcare operator + pt a adauga un zbor
 
@@ -34,7 +34,7 @@ namespace Transport_Aerian {
 
     private:
         Bilet m_bilet; //obiect de tip bilet asociat pasagerului
-        std::vector<Zbor*> m_zboruri;  //lsita de zboruri ale unui pasager - obiecte pe heap, gestionate dinamic
+        std::vector<Zbor*> m_istoric_zboruri;  //lsita de zboruri ale unui pasager - obiecte pe heap, gestionate dinamic
         static int m_numar_pasageri; // membru static care retine numarul total de pasageri creati
     };
 

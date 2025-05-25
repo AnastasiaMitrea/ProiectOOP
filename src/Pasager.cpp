@@ -4,7 +4,6 @@
 using namespace std;
 using namespace Transport_Aerian;
 
-int Pasager::m_numar_pasageri = 0; //initializare contor pasageri
 
 //constructorul default
 Pasager::Pasager() : Persoana(), m_bilet(Bilet()){}    //m_bilet(Bilet()) - initializeaza m_bilet cu un obiect de tip Bilet temporar
@@ -16,7 +15,7 @@ Pasager::Pasager(const string& nume, const string& prenume, const string& cnp, i
 
 //copy constructor
 Pasager::Pasager(const Pasager& other)
-    : Persoana(other), m_bilet(other.m_bilet), m_zboruri(other.m_zboruri){}
+    : Persoana(other), m_bilet(other.m_bilet), m_istoric_zboruri(other.m_istoric_zboruri){}
 
 //destructtor
 Pasager::~Pasager() {} //vectorul de zboruri se va goli automat la distrugerea obiectului Pasager
@@ -35,7 +34,7 @@ void Pasager::Afisare() const {
     std::cout << "Bilet: " << GetBilet() << std::endl;
 
     std::cout << "Zboruri asociate:\n";
-    for(const auto& zbor : m_zboruri) {
+    for(const auto& zbor : m_istoric_zboruri) {
         if(zbor)
             std::cout << *zbor << std::endl;
     }
@@ -44,7 +43,7 @@ void Pasager::Afisare() const {
 //metoda care adauga un zbor in lista de zboruri a pasagerului
 void Pasager::AdaugaZborIstoric(Zbor* zbor) {
     if(zbor != nullptr) {          //verific daca pointerul este valid
-        m_zboruri.push_back(zbor); 
+        m_istoric_zboruri.push_back(zbor); 
     }
 }
 
@@ -58,8 +57,8 @@ const Bilet& Pasager::GetBilet() const {
 }
 
 //getter pt vectorul de zboruri
-const vector<Zbor*>& Pasager::GetZboruri() const {
-    return m_zboruri; 
+const vector<Zbor*>& Pasager::GetIstoricZboruri() const {
+    return m_istoric_zboruri; 
 }
 
 //supraincarcare operator + pt a adauga un zbor

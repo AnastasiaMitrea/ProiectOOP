@@ -5,7 +5,7 @@ using namespace Transport_Aerian;
 using namespace std;
 
 //constructor default
-Bilet::Bilet() : m_id("NECUNOSCUT"), m_clasa("economic"), m_pret(0) {}
+Bilet::Bilet() : m_id("NECUNOSCUT"), m_clasa("Economic"), m_pret(0) {}
 
 //constructor cu parametri
 Bilet::Bilet(const string& id, const string& clasa, int pret)
