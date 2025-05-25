@@ -2,28 +2,20 @@
 
 using namespace Transport_Aerian;
 using namespace std;
+using namespace Utilitati;
 
 //constructor default
 Persoana::Persoana() : m_nume(""), m_prenume(""), m_cnp(""), m_varsta(0) {}
 
-/*
-//constructor cu parametri
-Persoana::Persoana(const string& nume, const string& prenume,
-                   const string& cnp, int varsta)
-    : m_nume(nume), m_prenume(prenume), m_cnp(cnp), m_varsta(varsta) {
-    if (!_ValidareCNP(m_cnp)) {
-        throw invalid_argument("CNP invalid!");
-    }
-}*/
-
-//constructor cu parametri
+//constructor cu parametri --- fara varsta si dataNasterii deoarece se seteaza automat din cnp
 Persoana::Persoana(const string& nume, const string& prenume,
                    const string& cnp)
     : m_nume(nume), m_prenume(prenume), m_cnp(cnp) {
     if (!_ValidareCNP(m_cnp)) {
         throw invalid_argument("CNP invalid!");
     }
-    m_varsta=_ExtrageVarstaCnp(cnp);
+    m_dataNasterii = Persoana::_ExtrageDataNasterii(m_cnp);
+    m_varsta = Calendar::CalculeazaVarsta(m_dataNasterii);
 }
 
 //constructor de copiere
@@ -48,42 +40,53 @@ void Persoana::SetCNP(const string& cnp) {
         throw invalid_argument("CNP invalid!");
     }
     m_cnp = cnp;
+    m_dataNasterii = Persoana::_ExtrageDataNasterii(m_cnp);
+    m_varsta = Calendar::CalculeazaVarsta(m_dataNasterii);
+    if (Calendar::EsteDataValida(m_dataNasterii)) {
+        throw invalid_argument("CNP invalid!");
+    }
 }
-void Persoana::SetVarsta(int varsta) { m_varsta = varsta; }
+
+Utilitati::Date Persoana::_ExtrageDataNasterii(const string& cnp) const {
+    int sex = _CharToInt(cnp[0]);
+    int secol;
+
+    if(sex == 1 || sex == 2)  //barbat/femeie intre 1900-1999
+        secol = 1900;
+    else if(sex == 5 || sex == 6)  //barbat/femeie intre 2000-2099
+        secol = 2000;
+    else
+        return Utilitati::Date(0, 0, 0); // data invalida sau persoana nascuta inainte de 1900 - imposibil
+
+    int an = secol + _CharToInt(cnp[1]) * 10 + _CharToInt(cnp[2]);
+    int luna = _CharToInt(cnp[3]) * 10 + _CharToInt(cnp[4]);
+    int zi = _CharToInt(cnp[5]) * 10 + _CharToInt(cnp[6]);
+
+    // validare data optionala
+    if(!Calendar::EsteDataValida(Utilitati::Date(zi, luna, an)))
+        return Date(0, 0, 0); // data invalida
+
+    return Utilitati::Date(zi, luna, an);
+}
 
 //metoda validare CNP
 bool Persoana::_ValidareCNP(const string& cnp) const {
-    bool lungime = (cnp.length() == 13);
-    bool dataValida = cnp[1];
+    if(cnp.length() != 13)  //un cnp are lungime de 13 caractere
+        return false;
+
+    char sex = cnp[0];
+    if(sex < '1' || sex > '6') //prima cifra intr-un cnp are valori intre 1 si 6 
+        return false;
+
+    Utilitati::Date dataNasterii = _ExtrageDataNasterii(cnp);
+    int varsta = Calendar::CalculeazaVarsta(dataNasterii);
+    return varsta > 0 && varsta <= 120;  //am limitat varsta maxima posibila la 120 ani
 }
 
-int Persoana::_CharToInt(char c){
-    int dif=(int)'0';
-    return c-dif;
-}
-
-int Persoana::_ExtrageVarstaCnp(string cnp){
-    time_t t = time(nullptr); // obtine timpul curent cu <ctime>
-    tm* timp_local = localtime(&t);  //conversie la timp local
-
-    int ziCurenta = timp_local->tm_mday;
-    int lunaCurenta = timp_local->tm_mon + 1; // (ianuarie=0 in ctime)
-    int anCurent = timp_local->tm_year + 1900; //anii sunt numarati de la 1 incepand cu 1901
-     
-    int zeci = _CharToInt(cnp[1])*10; //extragere zeci din cnp
-    int unitati = _CharToInt(cnp[2]); //extragere unitati din cnp
-    int anNastere = zeci + unitati; //ultimele 2 cifre din anul nasterii
-    if(_CharToInt(cnp[1]) > 2){  //daca cifra zecilor e mai mare ca 2 => secolul 20
-        anNastere += 1900;
-    }
-    else{  //daca cifra zecilor e mai mare ca 2 => secolul 21
-        anNastere += 2000; 
-    } 
-    return anCurent-anNastere;
-}
 
 //supraincarcare operator <<
 ostream& operator<<(ostream& out, const Persoana& p) {
     p.AfisareDate();
     return out;
 }
+

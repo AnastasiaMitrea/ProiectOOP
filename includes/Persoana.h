@@ -4,7 +4,9 @@
 #include <iostream>
 #include <string>
 #include <stdexcept> // pt throw invalid_argument
-#include <ctime>
+#include "Calendar.h"
+#include "Date.h"
+#include "Utils.h"
 
 namespace Transport_Aerian {
 
@@ -39,9 +41,11 @@ namespace Transport_Aerian {
         std::string m_prenume;
         std::string m_cnp;
         int m_varsta;
+        Utilitati::Date m_dataNasterii;
+        
+        static int _CharToInt(char c);
+        Utilitati::Date _ExtrageDataNasterii(const std::string& cnp) const;
         bool _ValidareCNP(const std::string& cnp) const;
-        int _CharToInt(char c);
-        int _ExtrageVarstaCnp(string cnp)    ;
     };
 
 }

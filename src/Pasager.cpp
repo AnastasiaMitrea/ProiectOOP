@@ -14,7 +14,7 @@ Pasager::Pasager() : Persoana(), m_bilet(Bilet()){
 
 //constructor parametrizat
 Pasager::Pasager(const string& nume, const string& prenume, const string& cnp, int varsta, const Bilet& bilet)
-    : Persoana(nume, prenume, cnp, varsta), m_bilet(bilet) {
+    : Persoana(nume, prenume, cnp), m_bilet(bilet) {
     _IncrementareContor();  //creste contorul de pasageri cand un nou obiect este creat
 }
 
