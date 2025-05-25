@@ -6,6 +6,7 @@ using namespace std;
 //constructor default
 Persoana::Persoana() : m_nume(""), m_prenume(""), m_cnp(""), m_varsta(0) {}
 
+/*
 //constructor cu parametri
 Persoana::Persoana(const string& nume, const string& prenume,
                    const string& cnp, int varsta)
@@ -13,6 +14,16 @@ Persoana::Persoana(const string& nume, const string& prenume,
     if (!_ValidareCNP(m_cnp)) {
         throw invalid_argument("CNP invalid!");
     }
+}*/
+
+//constructor cu parametri
+Persoana::Persoana(const string& nume, const string& prenume,
+                   const string& cnp)
+    : m_nume(nume), m_prenume(prenume), m_cnp(cnp) {
+    if (!_ValidareCNP(m_cnp)) {
+        throw invalid_argument("CNP invalid!");
+    }
+    m_varsta=_ExtrageVarstaCnp(cnp);
 }
 
 //constructor de copiere
@@ -42,7 +53,33 @@ void Persoana::SetVarsta(int varsta) { m_varsta = varsta; }
 
 //metoda validare CNP
 bool Persoana::_ValidareCNP(const string& cnp) const {
-    return cnp.length() == 13;
+    bool lungime = (cnp.length() == 13);
+    bool dataValida = cnp[1];
+}
+
+int Persoana::_CharToInt(char c){
+    int dif=(int)'0';
+    return c-dif;
+}
+
+int Persoana::_ExtrageVarstaCnp(string cnp){
+    time_t t = time(nullptr); // obtine timpul curent cu <ctime>
+    tm* timp_local = localtime(&t);  //conversie la timp local
+
+    int ziCurenta = timp_local->tm_mday;
+    int lunaCurenta = timp_local->tm_mon + 1; // (ianuarie=0 in ctime)
+    int anCurent = timp_local->tm_year + 1900; //anii sunt numarati de la 1 incepand cu 1901
+     
+    int zeci = _CharToInt(cnp[1])*10; //extragere zeci din cnp
+    int unitati = _CharToInt(cnp[2]); //extragere unitati din cnp
+    int anNastere = zeci + unitati; //ultimele 2 cifre din anul nasterii
+    if(_CharToInt(cnp[1]) > 2){  //daca cifra zecilor e mai mare ca 2 => secolul 20
+        anNastere += 1900;
+    }
+    else{  //daca cifra zecilor e mai mare ca 2 => secolul 21
+        anNastere += 2000; 
+    } 
+    return anCurent-anNastere;
 }
 
 //supraincarcare operator <<

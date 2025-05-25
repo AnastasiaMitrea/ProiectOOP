@@ -4,13 +4,15 @@
 #include <iostream>
 #include <string>
 #include <stdexcept> // pt throw invalid_argument
+#include <ctime>
 
 namespace Transport_Aerian {
 
     class Persoana{
     public:
         Persoana(); //constructor defautl
-        Persoana(const std::string& nume, const std::string& prenume, const std::string& cnp, int varsta); //constructor cu parametri si validare cnp
+        //Persoana(const std::string& nume, const std::string& prenume, const std::string& cnp, int varsta); //constructor cu parametri si validare cnp
+        Persoana(const std::string& nume, const std::string& prenume, const std::string& cnp); ////constructor cu parametri si validare cnp fara varsta
         Persoana(const Persoana& other); //constructor de copiere
         virtual ~Persoana(); //destructor virtual
 
@@ -37,7 +39,9 @@ namespace Transport_Aerian {
         std::string m_prenume;
         std::string m_cnp;
         int m_varsta;
-        bool _ValidareCNP(const std::string& cnp) const;        
+        bool _ValidareCNP(const std::string& cnp) const;
+        int _CharToInt(char c);
+        int _ExtrageVarstaCnp(string cnp)    ;
     };
 
 }
