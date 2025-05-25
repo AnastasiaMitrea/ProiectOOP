@@ -53,7 +53,7 @@ namespace Utilitati{
     }
 
     // verificare data valida
-    static bool EsteDataValida(Date data) {
+    bool Calendar::EsteDataValida(Date data) {
         if(data.luna < 1 || data.luna > 12 || data.zi < 1) //true daca luna este intre 1 si 12 si ziua este minim 1
             return false;
 
@@ -73,7 +73,7 @@ namespace Utilitati{
         int varsta = an - data.an;
         if(data.luna > luna || (data.luna == luna && data.zi > zi))
             varsta--;
-            
+
         return varsta;
     }
 

@@ -46,3 +46,16 @@ namespace Transport_Aerian {
     }
 }
 
+std::string Bilet::DescriereText() const {
+    return "Bilet ID: " + m_id + ", Clasa: " + m_clasa + ", Pret: " + std::to_string(m_pret) + " EURO";
+}
+
+std::string Bilet::GetIdText() const {
+    return m_id;
+}
+
+void Bilet::Afisare() const {
+    std::cout << *this << std::endl;
+}
+
+

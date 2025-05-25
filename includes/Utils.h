@@ -3,10 +3,7 @@
 
 namespace Utilitati{
 
-    int _CharToInt(char c){
-    int dif=(int)'0';
-    return c-dif;
-}
+    inline int CharToInt(char c) { return c - '0'; }
 
 }
 

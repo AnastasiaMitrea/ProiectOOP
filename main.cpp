@@ -1,7 +1,7 @@
 #include <iostream>
-#include "../includes/Bilet.h"
-#include "../includes/Pasager.h"
-#include "../includes/Zbor.h"
+#include "includes/Bilet.h"
+#include "includes/Pasager.h"
+#include "includes/Zbor.h"
 
 using namespace std;
 using namespace Transport_Aerian;

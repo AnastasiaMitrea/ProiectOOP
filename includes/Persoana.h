@@ -7,10 +7,11 @@
 #include "Calendar.h"
 #include "Date.h"
 #include "Utils.h"
+#include "I_Afisabil.h"
 
 namespace Transport_Aerian {
 
-    class Persoana{
+    class Persoana : public Interfete::IAfisabil {
     public:
         Persoana(); //constructor defautl
         //Persoana(const std::string& nume, const std::string& prenume, const std::string& cnp, int varsta); //constructor cu parametri si validare cnp
@@ -23,6 +24,7 @@ namespace Transport_Aerian {
         std::string GetPrenume() const;
         std::string GetCNP() const;
         int GetVarsta() const;
+        Date Persoana::GetDataNasterii() const {}
 
         //setteri
         void SetNume(const std::string& nume);
@@ -30,11 +32,13 @@ namespace Transport_Aerian {
         void SetCNP(const std::string& cnp);
         void SetVarsta(int varsta);
 
-        //metoda virtuala pura care va fi suprascrisa de clasele derivate
-        virtual void AfisareDate() const=0;
-
         //supraincarcare operator <<
         friend std::ostream& operator<<(std::ostream& out, const Persoana& p);
+
+        //metodele mostenite din interfata - le-am adaugat pt claritate
+        virtual std::string DescriereText() const = 0;
+        virtual std::string GetIdText() const = 0;
+        virtual void Afisare() const override = 0;
 
     private:
         std::string m_nume;

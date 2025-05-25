@@ -7,43 +7,42 @@ using namespace Transport_Aerian;
 int Pasager::m_numar_pasageri = 0; //initializare contor pasageri
 
 //constructorul default
-Pasager::Pasager() : Persoana(), m_bilet(Bilet()){
-    _IncrementareContor();      //m_bilet(Bilet()) - initializeaza m_bilet cu un obiect de tip Bilet temporar
-                                //m_bilet = Bilet() ar fi o initializare gresita pt ca ar apela constructorul de copiere
-}
+Pasager::Pasager() : Persoana(), m_bilet(Bilet()){}    //m_bilet(Bilet()) - initializeaza m_bilet cu un obiect de tip Bilet temporar
+                                                    //m_bilet = Bilet() ar fi o initializare gresita pt ca ar apela constructorul de copiere
 
 //constructor parametrizat
 Pasager::Pasager(const string& nume, const string& prenume, const string& cnp, int varsta, const Bilet& bilet)
-    : Persoana(nume, prenume, cnp), m_bilet(bilet) {
-    _IncrementareContor();  //creste contorul de pasageri cand un nou obiect este creat
-}
+    : Persoana(nume, prenume, cnp), m_bilet(bilet) {}
 
 //copy constructor
 Pasager::Pasager(const Pasager& other)
-    : Persoana(other), m_bilet(other.m_bilet), m_zboruri(other.m_zboruri){
-    _IncrementareContor();  //creste contorul de pasageri cand un nou obiect este creat
-}
+    : Persoana(other), m_bilet(other.m_bilet), m_zboruri(other.m_zboruri){}
 
 //destructtor
 Pasager::~Pasager() {} //vectorul de zboruri se va goli automat la distrugerea obiectului Pasager
 
-//metoda suprascrisa din clasa de baza care afiseaza datele pasagerului
-void Pasager::AfisareDate() const {
-    cout<<"Pasager: "<<GetNume()<<" "<<GetPrenume()<<endl;
-    cout<<"CNP: "<<GetCNP()<<endl;
-    cout<<"Varsta: "<<GetVarsta()<<endl;
-    cout<<"Bilet: "<<m_bilet<<endl<<endl;
-    cout<<"Zboruri asociate pasagerului: "<<endl<<endl;
+std::string Pasager::DescriereText() const {
+    return "Pasager " + GetNume() + " " + GetPrenume() + " (CNP: " + GetCNP() + ")";  //concatenare de string uri cu + din c++
+}
 
-    for(const auto& zbor : m_zboruri) { //parcurg vectorul de zboruri
-        if(zbor != nullptr) {  //verific daca pointerul este valid
-            cout<<*zbor<<endl; //apelam operatorul << supraincarcat in clasa zbor
-        }  //afisez fiecare zbor
+std::string Pasager::GetIdText() const {
+    return GetCNP();            //id ul specific pasagerului
+}
+
+void Pasager::Afisare() const {
+    std::cout << DescriereText() << std::endl;
+    std::cout << "Varsta: " << GetVarsta() << std::endl;
+    std::cout << "Bilet: " << GetBilet() << std::endl;
+
+    std::cout << "Zboruri asociate:\n";
+    for(const auto& zbor : m_zboruri) {
+        if(zbor)
+            std::cout << *zbor << std::endl;
     }
 }
 
 //metoda care adauga un zbor in lista de zboruri a pasagerului
-void Pasager::AdaugaZbor(Zbor* zbor) {
+void Pasager::AdaugaZborIstoric(Zbor* zbor) {
     if(zbor != nullptr) {          //verific daca pointerul este valid
         m_zboruri.push_back(zbor); 
     }
@@ -67,20 +66,8 @@ const vector<Zbor*>& Pasager::GetZboruri() const {
 Pasager Pasager::operator+(Zbor* zbor) const {
     Pasager nou(*this);         //creez un nou pasager care este o copie a obiectului curent
     if(zbor!=nullptr) {        //verific daca pointerul este valid
-        nou.AdaugaZbor(zbor);  
+        nou.AdaugaZborIstoric(zbor);  
     }
     return nou; 
 }
 
-namespace Transport_Aerian{
-    //supraincare operator << pt a afisa pasagerul
-    ostream& operator<<(ostream& out, const Pasager& pasager) {
-        pasager.AfisareDate(); //apelez metoda de afisare a datelor
-        return out;
-    }
-}
-
-//metoda privata care creste contorul de pasageri
-void Pasager::_IncrementareContor() {
-    m_numar_pasageri++; 
-}
