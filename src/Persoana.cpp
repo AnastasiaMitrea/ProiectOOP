@@ -14,8 +14,8 @@ Persoana::Persoana(const string& nume, const string& prenume,
     if (!_ValidareCNP(m_cnp)) {
         throw invalid_argument("CNP invalid!");
     }
-    m_dataNasterii = Persoana::_ExtrageDataNasterii(m_cnp);
-    m_varsta = Calendar::CalculeazaVarsta(m_dataNasterii);
+    m_data_nasterii = Persoana::_ExtrageDataNasterii(m_cnp);
+    m_varsta = Calendar::CalculeazaVarsta(m_data_nasterii);
 }
 
 //constructor de copiere
@@ -40,11 +40,8 @@ void Persoana::SetCNP(const string& cnp) {
         throw invalid_argument("CNP invalid!");
     }
     m_cnp = cnp;
-    m_dataNasterii = Persoana::_ExtrageDataNasterii(m_cnp);
-    m_varsta = Calendar::CalculeazaVarsta(m_dataNasterii);
-    if (Calendar::EsteDataValida(m_dataNasterii)) {
-        throw invalid_argument("CNP invalid!");
-    }
+    m_data_nasterii = Persoana::_ExtrageDataNasterii(m_cnp);
+    m_varsta = Calendar::CalculeazaVarsta(m_data_nasterii);
 }
 
 Utilitati::Date Persoana::_ExtrageDataNasterii(const string& cnp) const {
@@ -79,10 +76,11 @@ bool Persoana::_ValidareCNP(const string& cnp) const {
         return false;
 
     Utilitati::Date dataNasterii = _ExtrageDataNasterii(cnp);
+    if (!Calendar::EsteDataValida(dataNasterii)) 
+        return false;
     int varsta = Calendar::CalculeazaVarsta(dataNasterii);
     return varsta > 0 && varsta <= 120;  //am limitat varsta maxima posibila la 120 ani
 }
-
 
 //supraincarcare operator <<
 ostream& operator<<(ostream& out, const Persoana& p) {

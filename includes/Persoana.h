@@ -41,7 +41,7 @@ namespace Transport_Aerian {
         std::string m_prenume;
         std::string m_cnp;
         int m_varsta;
-        Utilitati::Date m_dataNasterii;
+        Utilitati::Date m_data_nasterii;
         
         static int _CharToInt(char c);
         Utilitati::Date _ExtrageDataNasterii(const std::string& cnp) const;

@@ -9,6 +9,7 @@ namespace Utilitati {
         int ora;
         int minut;
 
+        Ora() : ora(0), minut(0){}
         Ora(int ora, int minut) : ora(ora), minut(minut) {}
         //afisare ora in formatul HH:MM
         friend std::ostream& operator<<(std::ostream& os, const Ora& ora) {
