@@ -18,15 +18,6 @@ void Companie::AdaugaZbor(Zbor* zbor) {
         m_zboruri_oferite.push_back(zbor);
 }
 
-// afiseaza toate zborurile companiei
-void Companie::AfiseazaZboruriOferite() const {
-    cout << "Zborurile oferite de " << m_nume << " (" << m_tara_origine << "):" << endl << endl;
-    for(const auto& z : m_zboruri_oferite) {
-        if(z)
-            cout << *z  << endl << endl;
-    }
-}
-
 // getteri
 std::string Companie::GetNume() const {
     return m_nume;

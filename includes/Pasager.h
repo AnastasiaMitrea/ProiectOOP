@@ -20,7 +20,6 @@ namespace Transport_Aerian {
         ~Pasager();
 
         void AdaugaZborIstoric(Zbor* zbor); //adaug un pointer la Zbor in lista de zboruri ale pasagerului
-        static int GetNumarPasageri(); //functia statica care returneaza cati pasageri au fost creati
         const Bilet& GetBilet() const;
         const std::vector<Zbor*>& GetIstoricZboruri() const; //getter pt lista de zboruri
 

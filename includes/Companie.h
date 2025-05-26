@@ -13,16 +13,17 @@ namespace Transport_Aerian {
         // constructori
         Companie();
         Companie(const std::string& nume, const std::string& tara_origine);
-        ~Companie();
-
-        // metode
-        void AdaugaZbor(Zbor* zbor);
-        void AfiseazaZboruriOferite() const;
+        virtual ~Companie();
 
         // getteri
         std::string GetNume() const;
         std::string GetTaraOrigine() const;
         const std::vector<Zbor*>& GetZboruriOferite() const;
+
+        void AdaugaZbor(Zbor* zbor);        
+        virtual void AfiseazaZboruriOferite() const = 0; //va fi un mesaj afisat diferit in functie de companie
+        virtual float CalculPretFinal(float pret_baza) const = 0;   //preturile difera in functie de companii
+        virtual std::string GetPoliticaBagaj() const = 0;     //fiecare companie are o politica diferita
 
     private:
         std::string m_nume;

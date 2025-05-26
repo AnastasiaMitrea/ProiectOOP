@@ -47,11 +47,6 @@ void Pasager::AdaugaZborIstoric(Zbor* zbor) {
     }
 }
 
-//metoda statica care returneaza nr pasageri 
-int Pasager::GetNumarPasageri(){
-    return m_numar_pasageri; 
-}
-
 const Bilet& Pasager::GetBilet() const {
     return m_bilet; //returnez biletul asociat pasagerului
 }
