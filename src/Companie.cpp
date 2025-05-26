@@ -10,6 +10,8 @@ Companie::Companie() : m_nume("NECUNOSCUT"), m_tara_origine("NECUNOSCUTA") {}
 Companie::Companie(const std::string& nume, const std::string& tara_origine)
     : m_nume(nume), m_tara_origine(tara_origine) {}
 
+Companie::~Companie() {}
+
 // adauga zbor in lista companiei
 void Companie::AdaugaZbor(Zbor* zbor) {
     if(zbor)

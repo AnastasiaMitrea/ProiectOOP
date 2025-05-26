@@ -4,6 +4,9 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <iomanip> //pt setw in GenereazaBilet
+#include <sstream> //pt ostream de scriere directa in string in GenereazaBilet
+#include <map>
 #include "Date.h"
 #include "Ora.h"
 #include "I_Afisabil.h"
@@ -35,6 +38,8 @@ namespace Transport_Aerian {
         std::string DescriereText() const override;
         std::string GetIdText() const override;
         void Afisare() const override;
+
+        std::string GenereazaIdBilet(const std::string& clasa); //va genera bilete de tip A001, B002 in functie de nr biletului cumparat si clasa
         
         friend std::ostream& operator<<(std::ostream& os, const Zbor& zbor);
 
@@ -50,8 +55,11 @@ namespace Transport_Aerian {
         Ora m_ora_sosire;
         
         int m_durata;
-        int m_pret;
-    };
+        int m_pret_ruta;
+
+        std::map<std::string, int> m_contor_bilete_per_clasa; 
+        //un fel de dictionar cheie - valoare cu cheie = clasa ("economic", "business") si valoare = numarul biletului cu clasa respectiva
+    };                                                        
 
 } 
 

@@ -28,7 +28,7 @@ namespace Transport_Aerian {
     private:
         std::string m_id;
         std::string m_clasa;
-        int m_pret;
+        int m_pret_final;
     };
 
 }

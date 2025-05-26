@@ -35,7 +35,6 @@ namespace Transport_Aerian {
     private:
         Bilet m_bilet; //obiect de tip bilet asociat pasagerului
         std::vector<Zbor*> m_istoric_zboruri;  //lsita de zboruri ale unui pasager - obiecte pe heap, gestionate dinamic
-        static int m_numar_pasageri; // membru static care retine numarul total de pasageri creati
     };
 
 }

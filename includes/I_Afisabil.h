@@ -11,10 +11,10 @@ public:
     // afiseaza obiectul direct
     virtual void Afisare() const = 0;
 
-    // returneaza o descriere text completa despre obiect
+    // returneaza o descriere text completa despre obiectul respectiv
     virtual std::string DescriereText() const = 0;
 
-    // returneaza ID ul unic al obiectului ca text , de ex la persoana - cnp
+    // returneaza ID ul unic al obiectului ca text , de ex la persoana id = cnp
     virtual std::string GetIdText() const = 0;
 
     virtual ~IAfisabil() {}
