@@ -10,6 +10,12 @@ void Retea_Rute::AdaugaDistanta(const std::string& oras1, const std::string& ora
     m_distante[key] = distanta_km;  //adaug distanta in dictionar cu cheia ordonata
 }
 
+std::pair<std::string, std::string> Retea_Rute::_NormalizareCheie(const std::string& oras1, const std::string& oras2) const {
+    if(oras1 < oras2)   //compar alfabetic pt a decide care oras vine primul in pereche
+        return {oras1, oras2};
+    return {oras2, oras1}; 
+}
+
 int Retea_Rute::GetDistanta(const std::string& oras1, const std::string& oras2) const { 
     auto key = _NormalizareCheie(oras1, oras2); 
     auto it = m_distante.find(key); //caut cheia key (pereche de 2 orase) in dictionar cu iterator
@@ -26,8 +32,3 @@ int Retea_Rute::CalculeazaPretBaza(const std::string& oras1, const std::string& 
     return distanta / 10; // ex: 1800 km = 180 EUR (1 EUR = 10 km)
 }
 
-std::pair<std::string, std::string> Retea_Rute::_NormalizareCheie(const std::string& oras1, const std::string& oras2) const {
-    if(oras1 < oras2)   //compar alfabetic pt a decide care oras vine primul in pereche
-        return {oras1, oras2};
-    return {oras2, oras1}; 
-}
