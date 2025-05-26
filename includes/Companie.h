@@ -23,7 +23,7 @@ namespace Transport_Aerian {
         void AdaugaZbor(Zbor* zbor);        
         virtual void AfiseazaZboruriOferite() const = 0; //va fi un mesaj afisat diferit in functie de companie
         virtual float CalculPretFinal(float pret_baza) const = 0;   //preturile difera in functie de companii
-        virtual std::string GetPoliticaBagaj() const = 0;     //fiecare companie are o politica diferita
+        virtual std::string GetPoliticaBagaj() const = 0;     //fiecare companie are o politica
 
     private:
         std::string m_nume;
