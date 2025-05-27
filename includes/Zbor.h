@@ -9,21 +9,19 @@
 #include <map>
 #include "Date.h"
 #include "Ora.h"
-#include "I_Afisabil.h"
+#include "Retea_zboruri.h"
+#include "Calendar.h"
 
 using Utilitati::Date;
 using Utilitati::Ora;
 
 namespace Transport_Aerian {
 
-    class Zbor : public Interfete::IAfisabil {
+    class Zbor {
     public:
 
         Zbor(const Zbor&) = default;
-        Zbor(std::string id, std::string plecare, std::string destinatie,
-            Date data_plecare, Ora ora_plecare,
-            Date data_sosire, Ora ora_sosire,
-            int durata, int pret);  
+        Zbor::Zbor(std::string plecare, std::string destinatie, Date data_plecare, Ora ora_plecare, const Retea_Rute& retea);
         ~Zbor() = default;
 
         std::string GetId() const;
@@ -34,17 +32,10 @@ namespace Transport_Aerian {
         Ora GetOraSosire() const;
         Date GetDataPlecare() const;
         Date GetDataSosire() const;
-
-        std::string DescriereText() const override;
-        std::string GetIdText() const override;
-        void Afisare() const override;
-
-        std::string GenereazaIdBilet(const std::string& clasa); //va genera bilete de tip A001, B002 in functie de nr biletului cumparat si clasa
         
         friend std::ostream& operator<<(std::ostream& os, const Zbor& zbor);
 
     private:
-        std::string m_id;
         std::string m_plecare;
         std::string m_destinatie;
 
