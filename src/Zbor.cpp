@@ -28,7 +28,8 @@ Zbor::Zbor(std::string plecare, std::string destinatie, Date data_plecare, Ora o
 
 namespace Transport_Aerian {
     std::ostream& operator<<(std::ostream& os, const Zbor& zbor) {
-        os << "Ruta: " << zbor.m_plecare << " ---> " << zbor.m_destinatie <<endl<<endl
+        os << "ID Zbor: " << zbor.m_id << endl
+        << "Ruta: " << zbor.m_plecare << " ---> " << zbor.m_destinatie <<endl<<endl
         << "Plecare: " << zbor.m_data_plecare << "  " << zbor.m_ora_plecare <<endl
         << "Sosire: " << zbor.m_data_sosire << "  " << zbor.m_ora_sosire<<endl<<endl
         << "Durata: " << zbor.m_durata << " minute | "
@@ -36,6 +37,15 @@ namespace Transport_Aerian {
         return os;
     }
 }
+
+void Zbor::SetId(const std::string& id) {
+    m_id = id;
+}
+
+std::string Zbor::GetId() const {
+    return m_id;
+}
+
 std::string Zbor::GetPlecare() const {
     return m_plecare;
 }

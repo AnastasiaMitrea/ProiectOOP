@@ -23,7 +23,7 @@ namespace Transport_Aerian {
         void AdaugaPilot(Pilot* pilot);
         const std::vector<Pilot*>& GetPiloti() const;
 
-        std::string GenereazaIdZbor(); // genereaza un id unic pt fiecare zbor
+        std::string GenereazaIdZbor(); // genereaza un id unic pt fiecare zbor | se afla in Companie metoda pt idZbor pt ca depinde de Companie
         void AdaugaZbor(Zbor* zbor);        
         virtual void AfiseazaZboruriOferite() const = 0; //va fi un mesaj afisat diferit in functie de companie
         virtual float CalculPretCompanie(float pret_baza, const std::string& clasa) const = 0;   //preturile difera in functie de companii

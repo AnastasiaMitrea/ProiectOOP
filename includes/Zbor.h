@@ -25,9 +25,8 @@ namespace Transport_Aerian {
         Zbor(std::string plecare, std::string destinatie, Date data_plecare, Ora ora_plecare, const Retea_Rute& retea);
         ~Zbor() = default;
 
-        void SetPiloti(const std::vector<Pilot*>& piloti);
+        void SetId(const std::string& id);
 
-        const std::vector<Pilot*>& GetPiloti() const;
         std::string GetId() const;
         std::string GetPlecare() const;
         std::string GetDestinatie() const;
@@ -36,12 +35,13 @@ namespace Transport_Aerian {
         Ora GetOraSosire() const;
         Date GetDataPlecare() const;
         Date GetDataSosire() const;
-        std::string Zbor::GenereazaIdBilet(const std::string& clasa);
-        
+        std::string Zbor::GenereazaIdBilet(const std::string& clasa); //se afla in Zbor metoda pt idBilet pt ca un bilet se genereaza in contextul unui zbor
         
         friend std::ostream& operator<<(std::ostream& os, const Zbor& zbor);
 
     private:
+        std::string m_id; // ID-ul unic al zborului 
+        
         std::string m_plecare;
         std::string m_destinatie;
 
