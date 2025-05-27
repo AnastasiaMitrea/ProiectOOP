@@ -13,6 +13,7 @@ namespace Transport_Aerian {
         void AdaugaDistanta(const std::string& oras1, const std::string& oras2, int distanta_km);  //distanta dintre 2 orase
         int GetDistanta(const std::string& oras1, const std::string& oras2) const;
         int CalculeazaPretBaza(const std::string& oras1, const std::string& oras2) const;  //pret in functie de distanta
+        int CalculeazaDurata(const std::string& oras1, const std::string& oras2) const; //durata in functie de distanta
 
     private:
         std::map<std::pair<std::string, std::string>, int> m_distante;
