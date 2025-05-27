@@ -1,0 +1,43 @@
+#include "../includes/pilot.h"
+#include <iostream>
+
+using namespace std;
+using namespace Transport_Aerian;
+using namespace Utilitati;
+
+Pilot::Pilot() : Persoana(), m_an_incepere(0), m_experienta_ani(0) {}
+
+Pilot::Pilot(const std::string& nume, const std::string& prenume, const std::string& cnp, int an_incepere, const std::string& companie)
+    : Persoana(nume, prenume, cnp), m_an_incepere(an_incepere), m_companie(companie) {
+        _CalculeazaExperienta();
+}
+
+void Pilot::_CalculeazaExperienta() {
+    int an_curent = Calendar::GetAnCurent();
+    m_experienta_ani = an_curent - m_an_incepere;
+    if (m_experienta_ani < 0) 
+        m_experienta_ani = 0;
+}
+
+int Pilot::GetExperientaAni() const {
+    return m_experienta_ani;
+}
+
+int Pilot::GetAnIncepere() const {
+    return m_an_incepere;
+}
+
+std::string Pilot::GetCompanie() const {
+    return m_companie;
+}
+
+void Pilot::Afisare() const {
+    cout << "Pilot: " << GetNume() << " " << GetPrenume()
+     << " | CNP: " << GetCNP()
+     << " | Varsta: " << GetVarsta()
+     << " | Companie: " << m_companie
+     << " | An inceput cariera: " << m_an_incepere
+     << " | Experienta: " << m_experienta_ani << " ani"
+     << endl;
+
+}

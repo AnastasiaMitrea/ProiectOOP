@@ -11,6 +11,7 @@
 #include "Ora.h"
 #include "Retea_zboruri.h"
 #include "Calendar.h"
+#include "Pilot.h"
 
 using Utilitati::Date;
 using Utilitati::Ora;
@@ -24,6 +25,9 @@ namespace Transport_Aerian {
         Zbor(std::string plecare, std::string destinatie, Date data_plecare, Ora ora_plecare, const Retea_Rute& retea);
         ~Zbor() = default;
 
+        void SetPiloti(const std::vector<Pilot*>& piloti);
+
+        const std::vector<Pilot*>& GetPiloti() const;
         std::string GetId() const;
         std::string GetPlecare() const;
         std::string GetDestinatie() const;
@@ -33,6 +37,7 @@ namespace Transport_Aerian {
         Date GetDataPlecare() const;
         Date GetDataSosire() const;
         std::string Zbor::GenereazaIdBilet(const std::string& clasa);
+        
         
         friend std::ostream& operator<<(std::ostream& os, const Zbor& zbor);
 
@@ -48,6 +53,8 @@ namespace Transport_Aerian {
         
         int m_durata;
         int m_pret_ruta;
+
+        std::vector<Pilot*> m_piloti;
 
         std::map<std::string, int> m_contor_bilete_per_clasa; 
         //dictionar cheie - valoare cu cheie = clasa ("economic", "business") si valoare = numarul biletului cu clasa respectiva
