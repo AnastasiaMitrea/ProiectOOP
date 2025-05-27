@@ -9,9 +9,9 @@ namespace Transport_Aerian {
     public:
         Etihad();
 
-        float CalculPretFinal(float pret_baza) const override;
+        float CalculPretCompanie(float pret_baza, const std::string& clasa) const override;
         void AfiseazaZboruriOferite() const override;
-        std::string GetPoliticaBagaj() const override;
+        std::string GetPoliticaBagaj(const std::string& clasa) const override;
 
         std::string GetPrefixZbor() const override;
     };

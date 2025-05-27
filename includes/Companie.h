@@ -23,8 +23,8 @@ namespace Transport_Aerian {
         std::string GenereazaIdZbor(); // genereaza un id unic pt fiecare zbor
         void AdaugaZbor(Zbor* zbor);        
         virtual void AfiseazaZboruriOferite() const = 0; //va fi un mesaj afisat diferit in functie de companie
-        virtual float CalculPretFinal(float pret_baza) const = 0;   //preturile difera in functie de companii
-        virtual std::string GetPoliticaBagaj() const = 0;     //fiecare companie are o politica      
+        virtual float CalculPretCompanie(float pret_baza, const std::string& clasa) const = 0;   //preturile difera in functie de companii
+        virtual std::string GetPoliticaBagaj(const std::string& clasa) const = 0; //fiecare companie are o politica      
         virtual std::string GetPrefixZbor() const = 0; // prefix ul fiecarei companii
 
     private:
