@@ -12,6 +12,25 @@ Companie::Companie(const std::string& nume, const std::string& tara_origine)
 
 Companie::~Companie() {}
 
+string Companie::GenereazaIdZbor() {
+    string prefix = GetPrefixZbor();
+
+    int numar = ++m_contor_zboruri_pe_companie[m_nume]; // incrementam contorul per companie
+
+    std::ostringstream id;
+    id << prefix << std::setw(3) << std::setfill('0') << numar; // ex: WZ001, RO012 etc.
+
+    return id.str();
+}
+/*
+    prefix = primele 2 litere din numele companiei
+    setw(3) - urmatorul lucru scris trebuie sa ocupe 3 caractere
+    setfill(0) - completeaza cu 0 care e un singur caracter - deci este fortat de setw(3) sa mai ocupe inca 2 caractere
+    numar = contorul 
+    
+    id = WZ003 - al 3 lea bilet cumparat la Wizz air
+*/
+
 // adauga zbor in lista companiei
 void Companie::AdaugaZbor(Zbor* zbor) {
     if(zbor)
