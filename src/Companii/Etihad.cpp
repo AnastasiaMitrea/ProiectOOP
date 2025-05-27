@@ -26,3 +26,5 @@ void Etihad::AfiseazaZboruriOferite() const {
                  << endl << endl;
     }
 }
+
+std::string Etihad::GetPrefixZbor() const { return "EY"; }

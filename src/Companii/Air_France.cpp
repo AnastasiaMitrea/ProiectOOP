@@ -26,3 +26,5 @@ void AirFrance::AfiseazaZboruriOferite() const {
                  << endl << endl;
     }
 }
+
+std::string AirFrance::GetPrefixZbor() const { return "AF"; }

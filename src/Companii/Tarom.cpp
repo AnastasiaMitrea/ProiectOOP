@@ -26,3 +26,5 @@ void Tarom::AfiseazaZboruriOferite() const {
                  << endl << endl;
     }
 }
+
+std::string Tarom::GetPrefixZbor() const { return "RO"; }

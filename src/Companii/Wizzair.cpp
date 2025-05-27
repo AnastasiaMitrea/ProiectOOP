@@ -25,3 +25,5 @@ void WizzAir::AfiseazaZboruriOferite() const {
                  << CalculPretFinal(zbor->GetPret()) << " EUR"  << endl << endl;
     }
 }
+
+std::string WizzAir::GetPrefixZbor() const { return "WZ"; }

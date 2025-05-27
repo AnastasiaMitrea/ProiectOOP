@@ -12,6 +12,8 @@ namespace Transport_Aerian {
         float CalculPretFinal(float pret_baza) const override;
         void AfiseazaZboruriOferite() const override;
         std::string GetPoliticaBagaj() const override;
+
+        std::string GetPrefixZbor() const override;
     };
 
 }
