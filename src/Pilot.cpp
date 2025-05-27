@@ -7,8 +7,8 @@ using namespace Utilitati;
 
 Pilot::Pilot() : Persoana(), m_an_incepere(0), m_experienta_ani(0) {}
 
-Pilot::Pilot(const std::string& nume, const std::string& prenume, const std::string& cnp, int an_incepere, const std::string& companie)
-    : Persoana(nume, prenume, cnp), m_an_incepere(an_incepere), m_companie(companie) {
+Pilot::Pilot(const std::string& nume, const std::string& prenume, const std::string& cnp, int an_incepere)
+    : Persoana(nume, prenume, cnp), m_an_incepere(an_incepere){
         _CalculeazaExperienta();
 }
 
@@ -25,19 +25,4 @@ int Pilot::GetExperientaAni() const {
 
 int Pilot::GetAnIncepere() const {
     return m_an_incepere;
-}
-
-std::string Pilot::GetCompanie() const {
-    return m_companie;
-}
-
-void Pilot::Afisare() const {
-    cout << "Pilot: " << GetNume() << " " << GetPrenume()
-     << " | CNP: " << GetCNP()
-     << " | Varsta: " << GetVarsta()
-     << " | Companie: " << m_companie
-     << " | An inceput cariera: " << m_an_incepere
-     << " | Experienta: " << m_experienta_ani << " ani"
-     << endl;
-
 }

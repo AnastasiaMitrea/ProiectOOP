@@ -54,8 +54,6 @@ namespace Transport_Aerian {
         int m_durata;
         int m_pret_ruta;
 
-        std::vector<Pilot*> m_piloti;
-
         std::map<std::string, int> m_contor_bilete_per_clasa; 
         //dictionar cheie - valoare cu cheie = clasa ("economic", "business") si valoare = numarul biletului cu clasa respectiva
     };                                                        

@@ -20,6 +20,9 @@ namespace Transport_Aerian {
         std::string GetTaraOrigine() const;
         const std::vector<Zbor*>& GetZboruriOferite() const;
 
+        void AdaugaPilot(Pilot* pilot);
+        const std::vector<Pilot*>& GetPiloti() const;
+
         std::string GenereazaIdZbor(); // genereaza un id unic pt fiecare zbor
         void AdaugaZbor(Zbor* zbor);        
         virtual void AfiseazaZboruriOferite() const = 0; //va fi un mesaj afisat diferit in functie de companie
@@ -30,6 +33,7 @@ namespace Transport_Aerian {
     private:
         std::string m_nume;
         std::string m_tara_origine;
+        std::vector<Pilot*> m_piloti;
         std::vector<Zbor*> m_zboruri_oferite;
         std::map<std::string, int> m_contor_zboruri_pe_companie;
     };

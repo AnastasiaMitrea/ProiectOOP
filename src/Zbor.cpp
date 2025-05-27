@@ -74,11 +74,3 @@ std::string Zbor::GenereazaIdBilet(const std::string& clasa) {
 
     return id.str();   //id este un stream in care am continutul final si il returnez tip string .str()  
 }
-
-void Zbor::SetPiloti(const std::vector<Pilot*>& piloti) {
-    m_piloti = piloti;
-}
-
-const std::vector<Pilot*>& Zbor::GetPiloti() const {
-    return m_piloti;
-}

@@ -49,3 +49,12 @@ std::string Companie::GetTaraOrigine() const {
 const std::vector<Zbor*>& Companie::GetZboruriOferite() const {
     return m_zboruri_oferite;
 }
+
+void Companie::AdaugaPilot(Pilot* pilot) {
+    if (pilot)
+        m_piloti.push_back(pilot);
+}
+
+const std::vector<Pilot*>& Companie::GetPiloti() const {
+    return m_piloti;
+}
