@@ -21,7 +21,7 @@ namespace Transport_Aerian {
     public:
 
         Zbor(const Zbor&) = default;
-        Zbor::Zbor(std::string plecare, std::string destinatie, Date data_plecare, Ora ora_plecare, const Retea_Rute& retea);
+        Zbor(std::string plecare, std::string destinatie, Date data_plecare, Ora ora_plecare, const Retea_Rute& retea);
         ~Zbor() = default;
 
         std::string GetId() const;
@@ -32,6 +32,7 @@ namespace Transport_Aerian {
         Ora GetOraSosire() const;
         Date GetDataPlecare() const;
         Date GetDataSosire() const;
+        std::string Zbor::GenereazaIdBilet(const std::string& clasa);
         
         friend std::ostream& operator<<(std::ostream& os, const Zbor& zbor);
 
@@ -49,7 +50,7 @@ namespace Transport_Aerian {
         int m_pret_ruta;
 
         std::map<std::string, int> m_contor_bilete_per_clasa; 
-        //un fel de dictionar cheie - valoare cu cheie = clasa ("economic", "business") si valoare = numarul biletului cu clasa respectiva
+        //dictionar cheie - valoare cu cheie = clasa ("economic", "business") si valoare = numarul biletului cu clasa respectiva
     };                                                        
 
 } 

@@ -64,3 +64,14 @@ Date Zbor::GetDataSosire() const {
     return m_data_sosire;
 }
 
+std::string Zbor::GenereazaIdBilet(const std::string& clasa) {
+    int numar = ++m_contor_bilete_per_clasa[clasa]; // accesez nr de bilete deja generate pt clasa, il incrementez si salvez in "numar"
+                                                    //de ex daca sunt deja 4 bilete pt economic, se va crea urmatorul : E005
+    char prefix = toupper(clasa[0]); // clasa = "economic" sau  "business" si extrag initiala pe care o transform in litera mare => E si B
+
+    std::ostringstream id; // construiesc stringul final - folosesc un ostream in care stochez direct continutul in loc sa concatenez mai multe string uri
+    id << prefix << std::setw(3) << std::setfill('0') << numar; 
+
+    return id.str();   //id este un stream in care am continutul final si il returnez tip string .str()  
+}
+

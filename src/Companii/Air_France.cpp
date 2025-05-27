@@ -14,7 +14,7 @@ std::string AirFrance::GetPoliticaBagaj() const {
     return "1 bagaj de mana (12kg) + 1 bagaj de cala (23kg). Masa calda si bauturi incluse.";
 }
 
-void AirFrance::AfiseazaZboruriOferite() const {
+void AirFrance::AfiseazaZboruriOferite() const {  
     cout << "*** Air France - Eleganta in zbor ***" << endl;
     cout << "Politica de bagaj: " << GetPoliticaBagaj() << endl << endl;
 
