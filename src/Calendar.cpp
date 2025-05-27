@@ -77,7 +77,41 @@ namespace Utilitati{
         return varsta;
     }
 
-    
+    std::pair<Ora, int> Calendar::AdaugaMinuteLaOra(const Ora& ora_initiala, int minute_de_adaugat) {
+        int total_minute = ora_initiala.ora * 60 + ora_initiala.minut + minute_de_adaugat; //total minute trecute din ziua respectiva
+
+        int ora_noua = (total_minute / 60) % 24;  
+        int minut_nou = total_minute % 60;  
+
+        int zile_in_plus = total_minute / (24 * 60); // de cate ori am trecut peste 24h 
+
+        return { Ora(ora_noua, minut_nou), zile_in_plus };
+    }
+
+    /*
+        ex: ora initiala = 23:15
+            minute adaugate = 135 
+
+            total_minute = 23 * 60 + 15 + 135 = 1530 min
+            ora_noua = (1530/60) % 24 = 25h % 24 = 1
+            minut_nou = 1530 % 60 = 30 
+
+            zile_in plus = 1530 / (24*60) = 1530 / 1440 = 1 => s a trecut 1 data peste miezul noptii
+
+            se returneaza (Ora(1, 30), 1) => ora 1:30, a doua zi
+
+       ex2: ora initiala = 14:20
+            minute adaugate = 95
+
+            total_minute = 14 * 60 + 20 + 95 = 955 min
+            ora_noua = (955/60) % 24 = 15h % 24 = 15 
+            minut_nou = 955 % 60 = 55 
+
+            zile_in plus = 955 / (24*60) = 955 / 1440 = 0 => nu s-a trecut peste miezul noptii
+
+            se returneaza (Ora(15, 55), 0) => ora 15:55, aceeasi zi
+    */
+
 
 }
 

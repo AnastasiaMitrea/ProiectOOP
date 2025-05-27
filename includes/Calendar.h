@@ -20,6 +20,8 @@ class Calendar {
         static int GetLunaCurenta();
         static int GetZiCurenta();
         static Date GetDataCurenta();    
+        static std::pair<Ora, int> AdaugaMinuteLaOra(const Ora& ora_initiala, int minute_de_adaugat);
+
 
     private:
         static Date m_data_initializare; //momentul deschiderii aplicatiei
