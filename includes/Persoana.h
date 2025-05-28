@@ -31,6 +31,7 @@ namespace Transport_Aerian {
         void SetPrenume(const std::string& prenume);
         void SetCNP(const std::string& cnp);
         void SetVarsta(int varsta);
+        static bool ValidareCNP(const std::string& cnp);
 
         //supraincarcare operator <<
         friend std::ostream& operator<<(std::ostream& out, const Persoana& p);
@@ -42,8 +43,7 @@ namespace Transport_Aerian {
         int m_varsta;
         Utilitati::Date m_data_nasterii;
         
-        Utilitati::Date _ExtrageDataNasterii(const std::string& cnp) const;
-        bool _ValidareCNP(const std::string& cnp) const;
+        static Utilitati::Date _ExtrageDataNasterii(const std::string& cnp);
     };
 
 }

@@ -11,7 +11,7 @@ Persoana::Persoana() : m_nume(""), m_prenume(""), m_cnp(""), m_varsta(0), m_data
 Persoana::Persoana(const string& nume, const string& prenume,
                    const string& cnp)
     : m_nume(nume), m_prenume(prenume), m_cnp(cnp) {
-    if (!_ValidareCNP(m_cnp)) {
+    if (!ValidareCNP(m_cnp)) {
         throw invalid_argument("CNP invalid!");
     }
     m_data_nasterii = Persoana::_ExtrageDataNasterii(m_cnp);
@@ -37,7 +37,7 @@ Date Persoana::GetDataNasterii() const { return m_data_nasterii; }
 void Persoana::SetNume(const string& nume) { m_nume = nume; }
 void Persoana::SetPrenume(const string& prenume) { m_prenume = prenume; }
 void Persoana::SetCNP(const string& cnp) {
-    if (!_ValidareCNP(cnp)) {
+    if (!ValidareCNP(cnp)) {
         throw invalid_argument("CNP invalid!");
     }
     m_cnp = cnp;
@@ -45,7 +45,7 @@ void Persoana::SetCNP(const string& cnp) {
     m_varsta = Calendar::CalculeazaVarsta(m_data_nasterii);
 }
 
-Utilitati::Date Persoana::_ExtrageDataNasterii(const string& cnp) const {
+Utilitati::Date Persoana::_ExtrageDataNasterii(const string& cnp) {
     int sex = CharToInt(cnp[0]);
     int secol;
 
@@ -68,13 +68,17 @@ Utilitati::Date Persoana::_ExtrageDataNasterii(const string& cnp) const {
 }
 
 //metoda validare CNP
-bool Persoana::_ValidareCNP(const string& cnp) const {
+bool Persoana::ValidareCNP(const string& cnp) {
     if(cnp.length() != 13)  //un cnp are lungime de 13 caractere
         return false;
 
     char sex = cnp[0];
     if(sex < '1' || sex > '6') //prima cifra intr-un cnp are valori intre 1 si 6 
         return false;
+
+    for (char c : cnp)
+        if (!isdigit(c))
+            return false;
 
     Utilitati::Date dataNasterii = _ExtrageDataNasterii(cnp);
     if (!Calendar::EsteDataValida(dataNasterii)) 
