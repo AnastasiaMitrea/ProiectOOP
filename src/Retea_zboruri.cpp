@@ -3,6 +3,11 @@
 
 using namespace Transport_Aerian;
 
+Retea_Rute& Retea_Rute::GetInstanta() {   //singleton
+    static Retea_Rute instanta;  //apeleaza constructorul privat
+    return instanta;  //referinta la acelasi obiect
+}
+
 Retea_Rute::Retea_Rute() {}
 
 void Retea_Rute::AdaugaDistanta(const std::string& oras1, const std::string& oras2, int distanta_km) {

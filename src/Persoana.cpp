@@ -54,7 +54,7 @@ Utilitati::Date Persoana::_ExtrageDataNasterii(const string& cnp) const {
     else if(sex == 5 || sex == 6)  //barbat/femeie intre 2000-2099
         secol = 2000;
     else
-        return Utilitati::Date(0, 0, 0); // data invalida sau persoana nascuta inainte de 1900 - imposibil
+        return Utilitati::Date(0, 0, 0); // data invalida sau persoana nascuta inainte de 1900 (3, 4) - imposibil
 
     int an = secol + CharToInt(cnp[1]) * 10 + CharToInt(cnp[2]);
     int luna = CharToInt(cnp[3]) * 10 + CharToInt(cnp[4]);
@@ -80,6 +80,6 @@ bool Persoana::_ValidareCNP(const string& cnp) const {
     if (!Calendar::EsteDataValida(dataNasterii)) 
         return false;
     int varsta = Calendar::CalculeazaVarsta(dataNasterii);
-    return varsta > 0 && varsta <= 120;  //am limitat varsta maxima posibila la 120 ani
+    return varsta > 0 && varsta <= 110;  //am limitat varsta maxima posibila la 110 ani
 }
 

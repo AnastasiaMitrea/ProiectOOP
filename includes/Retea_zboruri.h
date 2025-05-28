@@ -8,7 +8,7 @@ namespace Transport_Aerian {
 
     class Retea_Rute {
     public:
-        Retea_Rute();
+        static Retea_Rute& GetInstanta();
 
         void AdaugaDistanta(const std::string& oras1, const std::string& oras2, int distanta_km);  //distanta dintre 2 orase
         int GetDistanta(const std::string& oras1, const std::string& oras2) const;
@@ -16,6 +16,8 @@ namespace Transport_Aerian {
         int CalculeazaDurata(const std::string& oras1, const std::string& oras2) const; //durata in functie de distanta
 
     private:
+        Retea_Rute();  //pt a fi singleton
+
         std::map<std::pair<std::string, std::string>, int> m_distante;
         //dictionar cheie - valoare cu cheie = pereche string uri ("oras1" , "oras2") si valoare = distanta (oras1, oras2)
         // ex: ("Bucuresti", "Paris"), 1800
