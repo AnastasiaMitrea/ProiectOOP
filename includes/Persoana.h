@@ -11,7 +11,7 @@
 
 namespace Transport_Aerian {
 
-    class Persoana : public Interfete::IAfisabil {
+    class Persoana {
     public:
         Persoana(); //constructor defautl
         //Persoana(const std::string& nume, const std::string& prenume, const std::string& cnp, int varsta); //constructor cu parametri si validare cnp
@@ -34,11 +34,6 @@ namespace Transport_Aerian {
 
         //supraincarcare operator <<
         friend std::ostream& operator<<(std::ostream& out, const Persoana& p);
-
-        //metodele mostenite din interfata - le-am adaugat pt claritate
-        virtual std::string DescriereText() const = 0;
-        virtual std::string GetIdText() const = 0;
-        virtual void Afisare() const override = 0;
 
     private:
         std::string m_nume;
