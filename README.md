@@ -1,8 +1,8 @@
-# Proiect POO - Anul I Semestrul II
-
 # Sistem de Rezervari Zboruri
 
-Acest proiect C++ simuleaza un sistem complet de rezervari pentru zboruri comerciale. A fost realizat ca tema pentru disciplina Programare Orientata pe Obiecte si implementeaza concepte avansate de OOP, precum mostenire, polimorfism, abstractizare, si gestiunea memoriei.
+Acest proiect C++ simuleaza un sistem complet de rezervari pentru zboruri comerciale. A fost realizat ca tema pentru disciplina Programare Orientata pe Obiecte si implementeaza concepte de OOP, precum mostenire, polimorfism, abstractizare, si gestiunea memoriei. 
+
+Proiectul a fost realizat 99% in C++11, avand un singur feature din C++17 (structured binding declaration).
 
 ## Functionalitati principale
 
@@ -12,9 +12,9 @@ Acest proiect C++ simuleaza un sistem complet de rezervari pentru zboruri comerc
 - Sistem de rezervari:
   - Alegerea unei companii si a unui zbor
   - Selectarea clasei (economic/business)
-  - Atribuirea echipajului
+  - Atribuirea echipajului cu experienta necesara
   - Introducerea datelor pasagerului si generarea biletului
-- Afisarea tuturor zborurilor disponibile (optiunea 1 din meniu)
+- Afisarea tuturor zborurilor disponibile (optiunea 1)
 - Afisarea tuturor rezervarilor realizate in sesiunea curenta (optiunea 3)
 - Salvarea rezervarilor intr-un fisier text sub forma de e-mail (optiunea 4)
 - Istoric de zboruri pentru fiecare pasager (afisat in optiunea 3)
@@ -24,18 +24,20 @@ Acest proiect C++ simuleaza un sistem complet de rezervari pentru zboruri comerc
 - Peste 10 clase organizate modular
 - Mostenire: clasa de baza `Companie` are patru derivari
 - Polimorfism: metode virtuale suprascrise pentru fiecare companie
-- Encapsulare si acces controlat prin getter/setteri
+- Incapsulare si acces controlat prin getter/setteri
 - Supraincarcare de functii si operatori
 - Utilizarea structurilor pentru tipuri simple (ex: `Date`, `Ora`)
 - Membri statici pentru generare ID unic de zbor
 - Utilizare de obiecte alocate atat pe stack, cat si pe heap
-- Singleton pentru `Retea_Rute` (gestioneaza distantele dintre orase)
+- Singleton pentru `Retea_Rute` (harta cu distantele dintre orase)
 
 ## Cum se foloseste
 
-1. Se compileaza proiectul cu suport pentru standardul C++11 sau mai recent
-2. Se ruleaza executabilul rezultat
-3. Meniul aplicatiei permite:
+1. Se compileaza proiectul din fisierul mare al proiectului, cu suport pentru standardul C++17
+   <pre>g++ main.cpp src/*.cpp src/Companii/*.cpp -Iincludes -o app.exe -std=c++17</pre>
+3. Se ruleaza executabilul rezultat
+   <pre>./app</pre>
+5. Meniul aplicatiei permite:
    - Afisarea tuturor zborurilor (optiunea 1)
    - Crearea unei rezervari (optiunea 2)
    - Afisarea tuturor rezervarilor din sesiune (optiunea 3)
@@ -51,6 +53,7 @@ Acest proiect C++ simuleaza un sistem complet de rezervari pentru zboruri comerc
 
 ## Exemplu rezervare exportata
 
+<pre>
 === REZERVARI SALVATE ===
 
 --------------------------------------------
@@ -87,7 +90,7 @@ Echipaj: Nagy Luca, Kovacs Istvan
 Companie: WizzAir
 
 Va multumim pentru alegerea serviciului nostru!
-
+</pre>
 
 
 ## Autor
