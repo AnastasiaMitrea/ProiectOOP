@@ -73,7 +73,9 @@ Echipaj: Horvath David, Toth Adam
 Companie: WizzAir
 
 Va multumim pentru alegerea serviciului nostru!
+  
 --------------------------------------------
+  
 To: Mitrea Ioana <6050712000000@client.OOP>
 Subject: Confirmare Rezervare Zbor - ID WZ009
 
@@ -95,4 +97,4 @@ Va multumim pentru alegerea serviciului nostru!
 
 ## Autor
 
-Proiect realizat de Mitrea Anastasia-Ioana pentru cursul de Programare Orientata pe Obiecte, Anul I, Semestrul II, Facultatea de Matematica si Informatica Bucuresti.
+Proiect realizat de Mitrea Anastasia-Ioana pentru cursul de Programare Orientata pe Obiecte, Anul I Semestrul II, Facultatea de Matematica si Informatica Bucuresti.
