@@ -90,7 +90,7 @@ int main() {
         {"Zurich", "Copenhaga"}, {"Bruxelles", "Atena"}
     };
     for (const auto& [plecare, destinatie] : rute_etihad) {
-        // zi random între 1 și 28
+        // zi random intre 1 și 28
         int zi = rand() % 28 + 1;
         int ora = rand() % 24;   // ora random 0-23
         int minut = rand() % 60;  // minute random 0-60 
@@ -189,7 +189,7 @@ do {
     std::cout << "0. Iesire\n";
     std::cout << "Selecteaza o optiune: ";
     std::cin >> optiune;
-    std::cin.ignore(); // curata bufferul
+    std::cin.ignore(); // curat bufferul
 
     switch (optiune) {
         case 1: {
@@ -223,7 +223,7 @@ do {
 
             std::vector<Companie*> companii = {etihad, airfrance, tarom, wizzair};
 
-            // Cauta zboruri disponibile cu aceeasi plecare, destinatie si data
+            // caut zboruri disponibile cu aceeasi plecare, destinatie si data
             for (Companie* comp : companii) {
                 for (Zbor* z : comp->GetZboruriOferite()) {
                     if (z && z->GetPlecare() == f.plecare &&
@@ -254,7 +254,7 @@ do {
 
             zbor_ales = zboruri_potrivite[opt - 1];
 
-            // Identifica compania
+            // identific compania prin vectorul de zboruri
             for (Companie* comp : companii) {
                 for (Zbor* z : comp->GetZboruriOferite()) {
                     if (z == zbor_ales) {
@@ -295,10 +295,10 @@ do {
         }
 
         case 3:
-            // TODO: Afișare rezervări
+            // afisare rezervari
             break;
         case 4:
-            // TODO: Salvare/Incarcare rezervări
+            // salvare rezervari
             break;
         case 0:
             std::cout << "Iesire din aplicatie. La revedere!\n";
