@@ -1,5 +1,7 @@
 #include <iostream>
 #include <algorithm>
+#include <fstream>
+#include <iomanip>
 #include "includes/Bilet.h"
 #include "includes/Calendar.h"
 #include "includes/Pasager.h"
@@ -23,6 +25,7 @@ void AfiseazaDataOraCurenta();
 void IncarcaRute(Transport_Aerian::Retea_Rute& retea);
 
 int main() {
+    Utilitati::Calendar::Initializare(); //get ora curenta la deschiderea aplicatiei
     srand(static_cast<unsigned>(time(0))); //pt "resetarea" lui rand
 
     Retea_Rute& retea = Retea_Rute::GetInstanta();
@@ -32,47 +35,51 @@ int main() {
 
     // EY
     std::vector<std::tuple<std::string, std::string, std::string, int>> date_etihad = {
-        {"Ahmad", "Zayed", "1970111123456", 1990},
-        {"Nour", "Farid", "1965123456789", 1988},
-        {"Khalid", "Omar", "1980032245678", 2005},
-        {"Yousef", "Habib", "1979010199999", 2002},
-        {"Omar", "Suleiman", "1985050512345", 2009},
-        {"Ali", "Hassan", "1973121211111", 1997},
-        {"Hadi", "Karim", "1982073012345", 2007}
+        {"Zayed", "Ahmad", "1700111123456", 1990},
+        {"Farid", "Nour", "2680512123456", 1988},
+        {"Omar", "Khalid", "1850322245678", 2005},
+        {"Habib", "Yousef", "2820101123456", 2002},
+        {"Suleiman", "Omar", "1890505123456", 2009},
+        {"Hassan", "Ali", "1771212123456", 1997},
+        {"Yasmin", "Lina", "2960309123456", 2016}
     };
+
 
     // AF
     std::vector<std::tuple<std::string, std::string, std::string, int>> date_af = {
-        {"Pierre", "Dubois", "1967021023456", 1991},
-        {"Jean", "Martin", "1974080412345", 1999},
-        {"Louis", "Petit", "1981032912345", 2006},
-        {"Nicolas", "Lemoine", "1976061612345", 2000},
-        {"Jacques", "Moreau", "1986123012345", 2014},
-        {"Luc", "Fournier", "1981050112345", 2005},
-        {"Henri", "Girard", "1988093012345", 2019}
+        {"Dubois", "Pierre", "1910210123456", 1991},
+        {"Martin", "Jean", "1990804123456", 1999},
+        {"Petit", "Louis", "1860329123456", 2006},
+        {"Lemoine", "Nicolas", "1800616123456", 2000},
+        {"Durand", "Sophie", "2941230123456", 2014},
+        {"Fournier", "Luc", "1850501123456", 2005},
+        {"Girard", "Claire", "2960930123456", 2019}
     };
+
 
     // RO
     std::vector<std::tuple<std::string, std::string, std::string, int>> date_ro = {
-        {"Ion", "Popescu", "1975031012345", 1995},
-        {"Vasile", "Ionescu", "1969121200001", 1992},
-        {"Gheorghe", "Stan", "1980022022222", 2005},
-        {"Andrei", "Marin", "1978010112345", 2004},
-        {"Mihai", "Georgescu", "1983050522222", 2010},
-        {"Florin", "Radu", "1990033022222", 2019},
-        {"Alexandru", "Dumitru", "1991123123456", 2022}
+        {"Popescu", "Ion", "1750310123456", 1995},
+        {"Ionescu", "Vasile", "1721212123456", 1992},
+        {"Stan", "Gheorghe", "1850220123456", 2005},
+        {"Marin", "Andrei", "1840101123456", 2004},
+        {"Georgescu", "Mihai", "1800505123456", 2010},
+        {"Iacob", "Elena", "2940330123456", 2019},
+        {"Popa", "Alina", "2821231123456", 2022}
     };
+
 
     // WZ
     std::vector<std::tuple<std::string, std::string, std::string, int>> date_wz = {
-        {"Luca", "Nagy", "1986010112345", 2012},
-        {"Adam", "Toth", "1982092912345", 2006},
-        {"Istvan", "Kovacs", "1987070722222", 2013},
-        {"David", "Horvath", "1992012012345", 2020},
-        {"Peter", "Balazs", "1993050511111", 2022},
-        {"Tamas", "Molnar", "1991123112345", 2021},
-        {"Laszlo", "Farkas", "1996040100000", 2023}
+        {"Nagy", "Luca", "2820101123456", 2012},
+        {"Toth", "Adam", "1760929123456", 2006},
+        {"Kovacs", "Istvan", "1630707123456", 2013},
+        {"Horvath", "David", "1800120123456", 2020},
+        {"Balazs", "Peter", "1720505123456", 2022},
+        {"Molnar", "Tamas", "1811231123456", 2021},
+        {"Szabo", "Kinga", "2940401123456", 2023}
     };
+
     
     Companie* etihad = new Etihad();
     Companie* airfrance = new AirFrance();
@@ -90,12 +97,14 @@ int main() {
         {"Zurich", "Copenhaga"}, {"Bruxelles", "Atena"}
     };
     for (const auto& [plecare, destinatie] : rute_etihad) {
+        int distanta = retea.GetDistanta(plecare, destinatie);
+        if (distanta == -1) continue; // ruta inexistenta
         // zi random intre 1 și 28
         int zi = rand() % 28 + 1;
         int ora = rand() % 24;   // ora random 0-23
         int minut = rand() % 60;  // minute random 0-60 
 
-        Date data_zbor(zi, Utilitati::Calendar::GetLunaCurenta(), Utilitati::Calendar::GetAnCurent());
+        Date data_zbor(zi, Utilitati::Calendar::GetLunaCurenta()+1, Utilitati::Calendar::GetAnCurent());
         Ora ora_zbor(ora, minut);
 
         Zbor* z = new Zbor(plecare, destinatie, data_zbor, ora_zbor, retea);
@@ -116,11 +125,14 @@ int main() {
     };
 
     for (const auto& [plecare, destinatie] : rute_af) {
+        int distanta = retea.GetDistanta(plecare, destinatie);
+        if (distanta == -1) continue; // ruta inexistenta
+
         int zi = rand() % 28 + 1;
         int ora = rand() % 24;
         int minut = rand() % 60;
         
-        Date data_zbor(zi, Utilitati::Calendar::GetLunaCurenta(), Utilitati::Calendar::GetAnCurent());
+        Date data_zbor(zi, Utilitati::Calendar::GetLunaCurenta()+1, Utilitati::Calendar::GetAnCurent());
         Ora ora_zbor(ora, minut);
 
         Zbor* z = new Zbor(plecare, destinatie, data_zbor, ora_zbor, retea);
@@ -138,11 +150,14 @@ int main() {
         {"Sibiu", "Londra"}, {"Iasi", "Munchen"}, {"Bacau", "Dublin"}
     };
     for (const auto& [plecare, destinatie] : rute_ro) {
+        int distanta = retea.GetDistanta(plecare, destinatie);
+        if (distanta == -1) continue; // ruta inexistenta
+
         int zi = rand() % 28 + 1;
         int ora = rand() % 24;
         int minut = rand() % 60;
 
-        Date data_zbor(zi, Utilitati::Calendar::GetLunaCurenta(), Utilitati::Calendar::GetAnCurent());
+        Date data_zbor(zi, Utilitati::Calendar::GetLunaCurenta()+1, Utilitati::Calendar::GetAnCurent());
         Ora ora_zbor(ora, minut);
 
         Zbor* z = new Zbor(plecare, destinatie, data_zbor, ora_zbor, retea);
@@ -160,11 +175,14 @@ int main() {
         {"Arad", "Roma"}, {"Suceava", "Memmingen"}, {"Baia Mare", "Barcelona"}
     };
     for (const auto& [plecare, destinatie] : rute_wz) {
+        int distanta = retea.GetDistanta(plecare, destinatie);
+        if (distanta == -1) continue; // ruta inexistenta
+
         int zi = rand() % 28 + 1;
         int ora = rand() % 24;
         int minut = rand() % 60;
 
-        Date data_zbor(zi, Utilitati::Calendar::GetLunaCurenta(), Utilitati::Calendar::GetAnCurent());
+        Date data_zbor(zi, Utilitati::Calendar::GetLunaCurenta()+1, Utilitati::Calendar::GetAnCurent());
         Ora ora_zbor(ora, minut);
 
         Zbor* z = new Zbor(plecare, destinatie, data_zbor, ora_zbor, retea);
@@ -198,7 +216,10 @@ do {
             Utilitati::Date data = Utilitati::Calendar::GetDataCurenta();
             Utilitati::Ora ora = Utilitati::Calendar::GetOraInitializare();
 
-            std::cout << "Lista de zboruri solicitata la " << data << ", ora: " << ora << "\n";
+            std::cout << "Lista de zboruri solicitata la " << data << ", ora: "
+          << std::setw(2) << std::setfill('0') << ora.ora << ":"
+          << std::setw(2) << std::setfill('0') << ora.minut << "\n";
+
             std::cout << "===============================================\n\n";
 
             std::vector<Companie*> companii = {etihad, airfrance, tarom, wizzair};
@@ -281,12 +302,13 @@ do {
             Pasager pas(f.nume, f.prenume, f.cnp);
             Bilet b(id_bilet, f.clasa, pret_final);
             pas.SetBilet(b);
+            pas.AdaugaZborIstoric(zbor_ales);
 
             std::vector<Pilot*> echipaj = SelecteazaEchipaj(companie_aleasa, zbor_ales, retea);
 
             // creez rezervare si afisez
             Rezervare* r = new Rezervare(pas, zbor_ales, echipaj, companie_aleasa);
-            std::cout << "\n--- REZERVARE COMPLETA ---\n";
+            std::cout << "\n\n--- REZERVARE COMPLETA ---\n\n";
             r->Afisare();
 
             rezervari.push_back(r);
@@ -294,12 +316,65 @@ do {
             break;
         }
 
-        case 3:
-            // afisare rezervari
+        case 3: {
+            system("cls");
+            if (rezervari.empty()) {
+                std::cout << "\nNu exista rezervari efectuate in aceasta sesiune.\n";
+            } else {
+                std::cout << "\n=== TOATE REZERVARILE DIN SESIUNE ===\n";
+                for (size_t i = 0; i < rezervari.size(); ++i) {
+                    std::cout << "\n--- Rezervare #" << (i + 1) << " ---\n";
+                    rezervari[i]->Afisare();
+
+                    const auto& istoric = rezervari[i]->GetPasager().GetIstoricZboruri();
+
+                    if (istoric.size() > 1) {
+                        std::cout << "\nAlte zboruri rezervate in aceasta sesiune de acest pasager:\n";  //daca exista
+                        for (const auto* z : istoric) {
+                            if (z != rezervari[i]->GetZbor()) {
+                                std::cout << "- " << z->GetId() << " | "
+                                        << z->GetPlecare() << " -> " << z->GetDestinatie()
+                                        << " la " << z->GetDataPlecare() << " "
+                                        << std::setw(2) << std::setfill('0') << z->GetOraPlecare().ora
+                                        << ":" << std::setw(2) << std::setfill('0') << z->GetOraPlecare().minut
+                                        << "\n";
+                            }
+                        }
+                    }
+                }
+            }
             break;
-        case 4:
-            // salvare rezervari
+        }
+
+        case 4: {
+            std::ofstream fout("rezervari_email.txt");
+
+            if (!fout) {
+                std::cout << "Eroare la deschiderea fisierului pentru scriere.\n";
+                break;
+            }
+
+            if (rezervari.empty()) {
+                fout << "Nu exista rezervari efectuate in aceasta sesiune.\n";
+            } else {
+                fout << "=== REZERVARI SALVATE ===\n\n";
+                for (size_t i = 0; i < rezervari.size(); ++i) {
+                    fout << "--------------------------------------------\n";
+                    fout << "To: " << rezervari[i]->GetPasager().GetNume() << " " << rezervari[i]->GetPasager().GetPrenume() << " <" 
+                        << rezervari[i]->GetPasager().GetCNP() << "@client.OOP>\n";
+                    fout << "Subject: Confirmare Rezervare Zbor - ID " 
+                        << rezervari[i]->GetZbor()->GetId() << "\n\n";
+                    fout << "Stimate pasager,\n\nAti efectuat o rezervare cu urmatoarele detalii:\n\n";
+                    rezervari[i]->ScriePeStream(fout); 
+                    fout << "\nVa multumim pentru alegerea serviciului nostru!\n";
+                }
+            }
+
+            fout.close();
+            std::cout << "\nRezervarile au fost salvate in fisierul 'rezervari_email.txt'.\n";
             break;
+        }
+
         case 0:
             std::cout << "Iesire din aplicatie. La revedere!\n";
             break;
@@ -372,6 +447,7 @@ std::vector<Pilot*> SelecteazaEchipaj(Companie* companie, Zbor* zbor, const Rete
 
 void IncarcaRute(Transport_Aerian::Retea_Rute& retea) {
     std::vector<std::tuple<std::string, std::string, int>> rute = {
+        // rute deja existente
         {"Bucuresti", "Londra", 2100}, {"Bucuresti", "Paris", 1870}, {"Bucuresti", "Amsterdam", 1780},
         {"Bucuresti", "Berlin", 1600}, {"Bucuresti", "Madrid", 2500}, {"Bucuresti", "Roma", 1130},
         {"Bucuresti", "Atena", 750},   {"Bucuresti", "Istanbul", 450}, {"Bucuresti", "Lisabona", 3200},
@@ -384,21 +460,37 @@ void IncarcaRute(Transport_Aerian::Retea_Rute& retea) {
         {"Istanbul", "Dubai", 3000},   {"Lisabona", "New York", 5410},{"Lisabona", "Londra", 1570},
         {"Lisabona", "Amsterdam", 1860},{"Lisabona", "Paris", 1450}, {"Londra", "Berlin", 950},
         {"Berlin", "Varsovia", 570},   {"Berlin", "Kiev", 1200},       {"Berlin", "Moscova", 1600},
-        {"Berlin", "Bucuresti", 1600}, {"Berlin", "Madrid", 2300},     {"Amsterdam", "Praga", 880},
+        {"Berlin", "Madrid", 2300},     {"Amsterdam", "Praga", 880},
         {"Praga", "Viena", 300},       {"Viena", "Budapesta", 220},    {"Budapesta", "Bucuresti", 850},
         {"Bucuresti", "Chisinau", 450},{"Chisinau", "Iasi", 130},      {"Iasi", "Cluj", 460},
         {"Cluj", "Timisoara", 320},    {"Timisoara", "Bucuresti", 540},{"Timisoara", "Munchen", 1000},
-        {"Munchen", "Zurich", 320},    {"Zurich", "Milano", 280},      {"Milano", "Paris", 850}
+        {"Munchen", "Zurich", 320},    {"Zurich", "Milano", 280},      {"Milano", "Paris", 850},
+        {"Dubai", "Londra", 5500}, {"New York", "Abu Dhabi", 11000}, {"Tokyo", "Singapore", 5300},
+        {"Doha", "Madrid", 5700}, {"Roma", "Amsterdam", 1300}, {"Munchen", "Bucuresti", 1600},
+        {"Praga", "Lisabona", 2300}, {"Dublin", "Viena", 1900}, {"Toronto", "Chicago", 800},
+        {"Zurich", "Copenhaga", 1200}, {"Bruxelles", "Atena", 2100}, {"Berlin", "Istanbul", 2200},
+        {"Amsterdam", "Roma", 1300}, {"Helsinki", "Oslo", 800}, {"Milano", "Barcelona", 960},
+        {"Cluj", "Barcelona", 2100}, {"Constanta", "Milano", 1500}, {"Chisinau", "Viena", 1600},
+        {"Timisoara", "Bruxelles", 1900}, {"Sibiu", "Londra", 2100}, {"Iasi", "Munchen", 1700},
+        {"Bacau", "Dublin", 2200}, {"Cluj", "Londra", 2100}, {"Timisoara", "Milano", 1500},
+        {"Sibiu", "Dortmund", 1400}, {"Iasi", "Bruxelles", 2000}, {"Constanta", "Paris", 1800},
+        {"Targu Mures", "Bologna", 1300}, {"Oradea", "Malta", 1600}, {"Arad", "Roma", 1100},
+        {"Suceava", "Memmingen", 1200}, {"Baia Mare", "Barcelona", 2000}
     };
 
-    for (const auto& [oras1, oras2, distanta] : rute)   // functie lambda - adaug tuplul oras1, oras2, distanta in retea
+// functie lambda - adaug tuplul oras1, oras2, distanta in retea
+    for (const auto& [oras1, oras2, distanta] : rute)
         retea.AdaugaDistanta(oras1, oras2, distanta);
 }
 
 
+
 void AfiseazaDataOraCurenta() {
     Utilitati::Date data = Utilitati::Calendar::GetDataCurenta();
-    Utilitati::Ora ora = Utilitati::Calendar::GetOraInitializare();  // sau GetOraCurenta dacă ai
+    Utilitati::Ora ora = Utilitati::Calendar::GetOraInitializare(); 
 
-    std::cout << "Data curenta: " << data << ", ora: " << ora << "\n";
+    std::cout << "Data curenta: " << data << ", ora: " 
+          << std::setw(2) << std::setfill('0') << ora.ora << ":"
+          << std::setw(2) << std::setfill('0') << ora.minut << "\n";
+
 }

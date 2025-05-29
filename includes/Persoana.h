@@ -27,11 +27,7 @@ namespace Transport_Aerian {
         void SetNume(const std::string& nume);
         void SetPrenume(const std::string& prenume);
         void SetCNP(const std::string& cnp);
-        void SetVarsta(int varsta);
         static bool ValidareCNP(const std::string& cnp);
-
-        //supraincarcare operator <<
-        friend std::ostream& operator<<(std::ostream& out, const Persoana& p);
 
     private:
         std::string m_nume;

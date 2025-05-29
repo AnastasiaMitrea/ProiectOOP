@@ -35,7 +35,7 @@ std::string Pasager::GetIdText() const {
 void Pasager::Afisare() const {
     std::cout << DescriereText() << std::endl;
     std::cout << "Varsta: " << GetVarsta() << std::endl;
-    std::cout << "Bilet: " << GetBilet() << std::endl;
+    std::cout << GetBilet() << std::endl;
 
     std::cout << "Zboruri asociate:\n";
     for(const auto& zbor : m_istoric_zboruri) {

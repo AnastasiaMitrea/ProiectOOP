@@ -23,7 +23,7 @@ void Rezervare::Afisare() const {
             p->Afisare();
 
     if (m_companie)
-        cout << "Va multumim pentru ca ati ales sa zburati cu noi. " << m_companie->GetNume() << " va doreste o calatorie placuta!" << endl;
+        cout << endl << "Va multumim pentru ca ati ales sa zburati cu noi. " << m_companie->GetNume() << " va doreste o calatorie placuta!" << endl;
     cout << "===================" << endl;
 }
 
@@ -61,4 +61,30 @@ const std::vector<Pilot*>& Rezervare::GetEchipaj() const {
 }
 Companie* Rezervare::GetCompanie() const { 
     return m_companie; 
+}
+
+void Rezervare::ScriePeStream(std::ostream& os) const {
+    os << "Pasager: " << m_pasager.GetNume() << " " << m_pasager.GetPrenume() 
+       << " (CNP: " << m_pasager.GetCNP() << ")\n";
+
+    os << "Zbor: " << m_zbor->GetId() 
+       << " | Ruta: " << m_zbor->GetPlecare() 
+       << " -> " << m_zbor->GetDestinatie() << "\n";
+
+    os << "Data: " << m_zbor->GetDataPlecare()
+       << ", Ora: " << std::setw(2) << std::setfill('0') << m_zbor->GetOraPlecare().ora
+       << ":" << std::setw(2) << std::setfill('0') << m_zbor->GetOraPlecare().minut << "\n";
+
+    os << "Clasa: " << m_pasager.GetBilet().GetClasa() << "\n";
+    os << "Pret: " << m_pasager.GetBilet().GetPret() << " EUR\n";
+
+    os << "Echipaj: ";
+    for (size_t i = 0; i < m_echipaj.size(); ++i) {
+        os << m_echipaj[i]->GetNume() << " " << m_echipaj[i]->GetPrenume();
+        if (i != m_echipaj.size() - 1)
+            os << ", ";
+    }
+    os << "\n";
+
+    os << "Companie: " << m_companie->GetNume() << "\n";
 }

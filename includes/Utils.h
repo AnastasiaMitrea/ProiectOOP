@@ -1,4 +1,6 @@
-#pragma once //am o eroare 
+#pragma once
+#include <string>  
+#include <cctype> 
 #ifndef UTILS_
 #define UTILS_H
 

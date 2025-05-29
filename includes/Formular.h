@@ -1,8 +1,11 @@
 #ifndef FORMULAR_H
 #define FORMULAR_H
 
+#include "utils.h"
+#include <iostream>
+#include <sstream>
 #include <string>
-#include "Date.h"
+#include "date.h"
 
 namespace Utilitati {
 

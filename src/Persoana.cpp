@@ -12,6 +12,7 @@ Persoana::Persoana(const string& nume, const string& prenume,
                    const string& cnp)
     : m_nume(nume), m_prenume(prenume), m_cnp(cnp) {
     if (!ValidareCNP(m_cnp)) {
+        std::cerr << "CNP invalid detectat: " << m_cnp << std::endl;
         throw invalid_argument("CNP invalid!");
     }
     m_data_nasterii = Persoana::_ExtrageDataNasterii(m_cnp);
@@ -37,7 +38,8 @@ Date Persoana::GetDataNasterii() const { return m_data_nasterii; }
 void Persoana::SetNume(const string& nume) { m_nume = nume; }
 void Persoana::SetPrenume(const string& prenume) { m_prenume = prenume; }
 void Persoana::SetCNP(const string& cnp) {
-    if (!ValidareCNP(cnp)) {
+    if (!ValidareCNP(m_cnp)) {
+        std::cerr << "CNP invalid detectat: " << m_cnp << std::endl;
         throw invalid_argument("CNP invalid!");
     }
     m_cnp = cnp;

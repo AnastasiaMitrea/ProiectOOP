@@ -1,0 +1,36 @@
+=== REZERVARI SALVATE ===
+
+--------------------------------------------
+To: Mitrea Ioana <6050712000000@client.OOP>
+Subject: Confirmare Rezervare Zbor - ID WZ011
+
+Stimate pasager,
+
+Ati efectuat o rezervare cu urmatoarele detalii:
+
+Pasager: Mitrea Ioana (CNP: 6050712000000)
+Zbor: WZ011 | Ruta: Baia Mare -> Barcelona
+Data: 14/6/2025, Ora: 08:57
+Clasa: business
+Pret: 429 EUR
+Echipaj: Horvath David, Toth Adam
+Companie: WizzAir
+
+Va multumim pentru alegerea serviciului nostru!
+--------------------------------------------
+To: Mitrea Ioana <6050712000000@client.OOP>
+Subject: Confirmare Rezervare Zbor - ID WZ009
+
+Stimate pasager,
+
+Ati efectuat o rezervare cu urmatoarele detalii:
+
+Pasager: Mitrea Ioana (CNP: 6050712000000)
+Zbor: WZ009 | Ruta: Arad -> Roma
+Data: 26/6/2025, Ora: 19:17
+Clasa: economic
+Pret: 143 EUR
+Echipaj: Nagy Luca, Kovacs Istvan
+Companie: WizzAir
+
+Va multumim pentru alegerea serviciului nostru!
