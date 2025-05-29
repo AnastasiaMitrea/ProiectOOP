@@ -16,6 +16,7 @@ namespace Transport_Aerian {
 
         void Afisare() const;
         std::string DescriereText() const;
+        std::string GetIdText() const override;
 
         const Pasager& GetPasager() const;
         Zbor* GetZbor() const;

@@ -14,19 +14,16 @@ namespace Transport_Aerian {
     class Persoana {
     public:
         Persoana(); //constructor defautl
-        //Persoana(const std::string& nume, const std::string& prenume, const std::string& cnp, int varsta); //constructor cu parametri si validare cnp
         Persoana(const std::string& nume, const std::string& prenume, const std::string& cnp); ////constructor cu parametri si validare cnp fara varsta
         Persoana(const Persoana& other); //constructor de copiere
         virtual ~Persoana(); //destructor virtual
 
-        //getteri
         std::string GetNume() const;
         std::string GetPrenume() const;
         std::string GetCNP() const;
         int GetVarsta() const;
-        Date Persoana::GetDataNasterii() const {}
+        Date GetDataNasterii() const {}
 
-        //setteri
         void SetNume(const std::string& nume);
         void SetPrenume(const std::string& prenume);
         void SetCNP(const std::string& cnp);

@@ -15,13 +15,14 @@ namespace Transport_Aerian {
 
     public:
         Pasager(); 
-        Pasager(const std::string& nume, const std::string& prenume, const std::string& cnp, int varsta, const Bilet& bilet);   
+        Pasager(const std::string& nume, const std::string& prenume, const std::string& cnp);
         Pasager(const Pasager& other);
         ~Pasager();
 
         void AdaugaZborIstoric(Zbor* zbor); //adaug un pointer la Zbor in lista de zboruri ale pasagerului
         const Bilet& GetBilet() const;
         const std::vector<Zbor*>& GetIstoricZboruri() const; //getter pt lista de zboruri
+        void SetBilet(const Bilet& b);
 
         Pasager operator+(Zbor* zbor) const; //supraincarcare operator + pt a adauga un zbor
 

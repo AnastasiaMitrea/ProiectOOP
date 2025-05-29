@@ -20,9 +20,8 @@ namespace Utilitati {
         
     };
 
-    Formular Utilitati::ColecteazaFormular();
-    void Utilitati::AfiseazaFormular(const Formular& f);
-
+    Formular ColecteazaFormular();
+    void AfiseazaFormular(const Formular& f);
 }
 
 #endif

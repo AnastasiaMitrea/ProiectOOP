@@ -10,8 +10,8 @@ Pasager::Pasager() : Persoana(), m_bilet(Bilet()){}    //m_bilet(Bilet()) - init
                                                     //m_bilet = Bilet() ar fi o initializare gresita pt ca ar apela constructorul de copiere
 
 //constructor parametrizat
-Pasager::Pasager(const string& nume, const string& prenume, const string& cnp, int varsta, const Bilet& bilet)
-    : Persoana(nume, prenume, cnp), m_bilet(bilet) {}
+Pasager::Pasager(const std::string& nume, const std::string& prenume, const std::string& cnp)
+    : Persoana(nume, prenume, cnp) {}
 
 //copy constructor
 Pasager::Pasager(const Pasager& other)
@@ -19,6 +19,10 @@ Pasager::Pasager(const Pasager& other)
 
 //destructtor
 Pasager::~Pasager() {} //vectorul de zboruri se va goli automat la distrugerea obiectului Pasager
+
+void Pasager::SetBilet(const Bilet& b) {
+    m_bilet = b;
+}
 
 std::string Pasager::DescriereText() const {
     return "Pasager " + GetNume() + " " + GetPrenume() + " (CNP: " + GetCNP() + ")";  //concatenare de string uri cu + din c++

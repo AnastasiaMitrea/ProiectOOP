@@ -35,7 +35,7 @@ namespace Transport_Aerian {
         Ora GetOraSosire() const;
         Date GetDataPlecare() const;
         Date GetDataSosire() const;
-        std::string Zbor::GenereazaIdBilet(const std::string& clasa); //se afla in Zbor metoda pt idBilet pt ca un bilet se genereaza in contextul unui zbor
+        std::string GenereazaIdBilet(const std::string& clasa); //se afla in Zbor metoda pt idBilet pt ca un bilet se genereaza in contextul unui zbor
         
         friend std::ostream& operator<<(std::ostream& os, const Zbor& zbor);
 

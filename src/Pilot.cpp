@@ -1,5 +1,6 @@
 #include "../includes/pilot.h"
 #include <iostream>
+#include <sstream>
 
 using namespace std;
 using namespace Transport_Aerian;
@@ -25,4 +26,21 @@ int Pilot::GetExperientaAni() const {
 
 int Pilot::GetAnIncepere() const {
     return m_an_incepere;
+}
+
+void Pilot::Afisare() const {
+    std::cout << "Pilot: " << GetNume() << " " << GetPrenume() << ", CNP: " << GetCNP()
+              << ", Varsta: " << GetVarsta() << ", Experienta: " << GetExperientaAni() << " ani\n";
+}
+
+std::string Pilot::DescriereText() const {
+    std::ostringstream os;
+    os << "Pilot: " << GetNume() << " " << GetPrenume()
+       << ", Varsta: " << GetVarsta()
+       << ", Experienta: " << GetExperientaAni() << " ani";
+    return os.str();
+}
+
+std::string Pilot::GetIdText() const {
+    return GetCNP();  // sau orice identificator consideri relevant
 }

@@ -1,4 +1,4 @@
-#include "../includes/rezervare.h"
+#include "../includes/Rezervare.h"
 #include <iostream>
 
 using namespace std;
@@ -44,6 +44,11 @@ std::string Rezervare::DescriereText() const {
 
     return text;
 }
+
+std::string Rezervare::GetIdText() const {
+    return m_pasager.GetBilet().GetId(); 
+}
+
 
 const Pasager& Rezervare::GetPasager() const { 
     return m_pasager; 

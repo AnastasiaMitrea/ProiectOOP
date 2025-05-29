@@ -10,7 +10,14 @@ Companie::Companie() : m_nume("NECUNOSCUT"), m_tara_origine("NECUNOSCUTA") {}
 Companie::Companie(const std::string& nume, const std::string& tara_origine)
     : m_nume(nume), m_tara_origine(tara_origine) {}
 
-Companie::~Companie() {}
+Companie::~Companie() {
+    for (Pilot* p : m_piloti)
+        delete p;
+
+    for (Zbor* z : m_zboruri_oferite)
+        delete z;
+}
+
 
 string Companie::GenereazaIdZbor() {
     string prefix = GetPrefixZbor();
