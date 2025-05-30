@@ -1,4 +1,4 @@
-# Sistem de Rezervari Zboruri
+# Sistem de Rezervare zboruri
 
 Acest proiect C++ simuleaza un sistem complet de rezervari pentru zboruri comerciale. A fost realizat ca tema pentru disciplina Programare Orientata pe Obiecte si implementeaza concepte de OOP, precum mostenire, polimorfism, abstractizare, si gestiunea memoriei. 
 
